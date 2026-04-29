@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(make test-verilog *)",
+      "Bash(brew list *)",
+      "Bash(pdftotext /Users/yomna/Documents/projects/harts/chs-ersa03.pdf -)",
+      "Bash(brew install *)",
+      "Bash(grep -n \"^1#\\\\|^0#\\\\|^1>\\\\|^0>\\\\|^1A\\\\|^0A\\\\|^b.*~\\\\|^b.*9$\\\\|^1I\\\\|^0I\" /Users/yomna/Documents/projects/harts/tb_hw_scheduler_top.vcd)",
+      "Bash(make test-pq *)",
+      "Bash(make test-sq *)",
+      "Bash(make test-tt *)",
+      "Bash(make test-ctrl *)",
+      "Bash(iverilog -g2012 -o verif/sim/ctrl_dbg verif/tb_verilog/tb_control_unit_assert.v rtl/control_unit.v rtl/task_table.v rtl/priority_queue.v rtl/pq_cell.v rtl/sleep_queue.v rtl/timer.v)",
+      "Bash(vvp verif/sim/ctrl_dbg)",
+      "Bash(make test-phase1 *)",
+      "Bash(make test-top *)",
+      "Bash(make)"
+    ]
+  }
+}

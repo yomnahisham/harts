@@ -1,0 +1,20 @@
+{
+  "DESIGN_NAME": "hw_scheduler_top",
+  "VERILOG_FILES": [
+    "dir::../../rtl/hw_scheduler_top.v",
+    "dir::../../rtl/control_unit.v",
+    "dir::../../rtl/spi_slave_if.v",
+    "dir::../../rtl/priority_queue.v",
+    "dir::../../rtl/pq_cell.v",
+    "dir::../../rtl/sleep_queue.v",
+    "dir::../../rtl/task_table.v",
+    "dir::../../rtl/timer.v",
+    "dir::../../rtl/interrupt_ctrl.v",
+    "dir::../../rtl/scan_chain.v"
+  ],
+  "CLOCK_PORT": "clk",
+  "CLOCK_PERIOD": 20,
+  "FP_CORE_UTIL": 35,
+  "PL_TARGET_DENSITY": 0.55,
+  "RUN_CTS": true
+}
