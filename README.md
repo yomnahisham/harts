@@ -1,7 +1,6 @@
 # HARTS: Hardware Adaptive Real-Time Scheduler
-**done for asic-hub sprint sp26**
 
-A hardware scheduling coprocessor for real-time task management on edge devices.
+Hardware scheduler coprocessor for deterministic real-time task management. 
 
 ## Overview
 
@@ -109,3 +108,6 @@ This is an open-source hardware project.
 ---
 
 **For detailed technical information, see the [docs/](docs/) directory.**
+
+*(note-done for asic-hub sprint sp26)*
+
