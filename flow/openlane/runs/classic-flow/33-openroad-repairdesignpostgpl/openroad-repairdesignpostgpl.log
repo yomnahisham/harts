@@ -1,0 +1,93 @@
+Reading timing models for corner max_tt_025C_1v80…
+Reading timing library for the 'max_tt_025C_1v80' corner at '/Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib'…
+Reading timing models for corner min_ss_100C_1v60…
+Reading timing library for the 'min_ss_100C_1v60' corner at '/Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib'…
+Reading timing models for corner nom_tt_025C_1v80…
+Reading timing library for the 'nom_tt_025C_1v80' corner at '/Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib'…
+[WARNING STA-1140] /Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib line 1, library sky130_fd_sc_hd__tt_025C_1v80 already exists.
+Reading timing models for corner max_ff_n40C_1v95…
+Reading timing library for the 'max_ff_n40C_1v95' corner at '/Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95.lib'…
+Reading timing models for corner nom_ff_n40C_1v95…
+Reading timing library for the 'nom_ff_n40C_1v95' corner at '/Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95.lib'…
+[WARNING STA-1140] /Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95.lib line 1, library sky130_fd_sc_hd__ff_n40C_1v95 already exists.
+Reading timing models for corner max_ss_100C_1v60…
+Reading timing library for the 'max_ss_100C_1v60' corner at '/Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib'…
+[WARNING STA-1140] /Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib line 1, library sky130_fd_sc_hd__ss_100C_1v60 already exists.
+Reading timing models for corner min_tt_025C_1v80…
+Reading timing library for the 'min_tt_025C_1v80' corner at '/Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib'…
+[WARNING STA-1140] /Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib line 1, library sky130_fd_sc_hd__tt_025C_1v80 already exists.
+Reading timing models for corner nom_ss_100C_1v60…
+Reading timing library for the 'nom_ss_100C_1v60' corner at '/Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib'…
+[WARNING STA-1140] /Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib line 1, library sky130_fd_sc_hd__ss_100C_1v60 already exists.
+Reading timing models for corner min_ff_n40C_1v95…
+Reading timing library for the 'min_ff_n40C_1v95' corner at '/Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95.lib'…
+[WARNING STA-1140] /Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ff_n40C_1v95.lib line 1, library sky130_fd_sc_hd__ff_n40C_1v95 already exists.
+Reading OpenROAD database at '/Users/yomna/Documents/projects/harts/flow/openlane/runs/classic-flow/29-openroad-globalplacement/hw_scheduler_top.odb'…
+Reading design constraints file at '/Users/yomna/Documents/projects/harts/flow/openlane/sdc/hw_scheduler_top_pnr.sdc'…
+[INFO]: Creating clock {clk} for port clk with period: 100
+[INFO]: Setting clock uncertainty to: 0.12
+[INFO]: Source clock latency 0 (macro boundary)
+[INFO RSZ-0027] Inserted 14 sky130_fd_sc_hd__clkdlybuf4s25_1 input buffers.
+[INFO RSZ-0028] Inserted 3 sky130_fd_sc_hd__clkdlybuf4s25_1 output buffers.
++ repair_design -verbose -max_wire_length 0 -slew_margin 30 -cap_margin 30
+Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
+---------------------------------------------------------------------
+        0 |     +0.0% |       0 |       0 |             0 |     16029
+     1000 |     +0.1% |       1 |      15 |             5 |     15029
+     2000 |     +0.4% |       4 |     105 |            36 |     14029
+     3000 |     +1.5% |      13 |     391 |           127 |     13029
+     4000 |     +1.8% |      18 |     477 |           165 |     12029
+     5000 |     +2.2% |      25 |     571 |           201 |     11029
+     6000 |     +2.3% |      31 |     609 |           229 |     10029
+     7000 |     +2.4% |      35 |     644 |           260 |      9029
+     8000 |     +2.9% |      64 |     752 |           346 |      8029
+     9000 |     +4.3% |      88 |    1107 |           433 |      7029
+    10000 |     +7.1% |     137 |    1830 |           561 |      6029
+    11000 |     +7.4% |     146 |    1901 |           598 |      5029
+    12000 |     +8.5% |     156 |    2207 |           644 |      4029
+    13000 |    +12.4% |     188 |    3179 |           745 |      3029
+    14000 |    +13.3% |     191 |    3414 |           764 |      2029
+    15000 |    +15.9% |     191 |    4077 |           779 |      1029
+    16000 |    +17.2% |     193 |    4426 |           819 |        29
+    final |    +17.4% |     198 |    4463 |           834 |         0
+---------------------------------------------------------------------
+[INFO RSZ-0034] Found 796 slew violations.
+[INFO RSZ-0035] Found 352 fanout violations.
+[INFO RSZ-0036] Found 21 capacitance violations.
+[INFO RSZ-0039] Resized 198 instances.
+[INFO RSZ-0038] Inserted 4463 buffers in 834 nets.
+[INFO RSZ-0042] Inserted 1 tie sky130_fd_sc_hd__conb_1 instances.
+[WARNING RSZ-0020] found 2 floating nets.
+ VGND
+ VPWR
++ detailed_placement -max_displacement  500 100 
+Placement Analysis
+---------------------------------
+total displacement      47074.2 u
+average displacement        1.6 u
+max displacement           16.0 u
+original HPWL          949053.2 u
+legalized HPWL         984717.8 u
+delta HPWL                    4 %
+
+[INFO DPL-0020] Mirrored 7688 instances
+[INFO DPL-0021] HPWL before          984717.8 u
+[INFO DPL-0022] HPWL after           970799.7 u
+[INFO DPL-0023] HPWL delta               -1.4 %
+Setting global connections for newly added cells…
+[INFO] Setting global connections...
+[INFO ODB-0403] 17924 connections made, 0 conflicts skipped.
+Updating metrics…
+Cell type report:                       Count       Area
+  Fill cell                               564    2117.03
+  Tap cell                               8378   10482.55
+  Timing Repair Buffer                   4480   35223.78
+  Inverter                                302    1162.36
+  Sequential cell                        2862   74556.51
+  Multi-Input combinational cell        12832  131489.86
+  Total                                 29418  255032.10
+Writing OpenROAD database to '/Users/yomna/Documents/projects/harts/flow/openlane/runs/classic-flow/33-openroad-repairdesignpostgpl/hw_scheduler_top.odb'…
+Writing netlist to '/Users/yomna/Documents/projects/harts/flow/openlane/runs/classic-flow/33-openroad-repairdesignpostgpl/hw_scheduler_top.nl.v'…
+Writing powered netlist to '/Users/yomna/Documents/projects/harts/flow/openlane/runs/classic-flow/33-openroad-repairdesignpostgpl/hw_scheduler_top.pnl.v'…
+Writing layout to '/Users/yomna/Documents/projects/harts/flow/openlane/runs/classic-flow/33-openroad-repairdesignpostgpl/hw_scheduler_top.def'…
+Writing timing constraints to '/Users/yomna/Documents/projects/harts/flow/openlane/runs/classic-flow/33-openroad-repairdesignpostgpl/hw_scheduler_top.sdc'…

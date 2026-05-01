@@ -1,0 +1,71 @@
+{
+   "creator": "Yosys 0.62 (git sha1 7326bb7d6641500ecb285c291a54a662cb1e76cf, clang++ 21.1.2 -fPIC -O3)",
+   "invocation": "stat -json -liberty /Users/yomna/Documents/projects/harts/flow/openlane/runs/synexp/tmp/805a67ac260047e09db317fa64718403.lib ",
+   "modules": {
+      "\\hw_scheduler_top": {
+         "num_wires":         20061,
+         "num_wire_bits":     22766,
+         "num_pub_wires":     246,
+         "num_pub_wire_bits": 2951,
+         "num_ports":         11,
+         "num_port_bits":     18,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         22693,
+         "num_submodules":       0,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 6323,
+            "$_AND_": 414,
+            "$_DFFE_PN0P_": 1671,
+            "$_DFFE_PN1P_": 16,
+            "$_DFFE_PP_": 40,
+            "$_DFF_PN0_": 1040,
+            "$_DFF_PN1_": 6,
+            "$_MUX_": 5944,
+            "$_NAND_": 576,
+            "$_NOR_": 903,
+            "$_NOT_": 1285,
+            "$_ORNOT_": 178,
+            "$_OR_": 2698,
+            "$_SDFFE_PN0P_": 65,
+            "$_SDFF_PN0_": 24,
+            "$_XNOR_": 73,
+            "$_XOR_": 1437
+         }
+      }
+   },
+      "design": {
+         "num_wires":         20061,
+         "num_wire_bits":     22766,
+         "num_pub_wires":     246,
+         "num_pub_wire_bits": 2951,
+         "num_ports":         11,
+         "num_port_bits":     18,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         22693,
+         "num_submodules":       0,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 6323,
+            "$_AND_": 414,
+            "$_DFFE_PN0P_": 1671,
+            "$_DFFE_PN1P_": 16,
+            "$_DFFE_PP_": 40,
+            "$_DFF_PN0_": 1040,
+            "$_DFF_PN1_": 6,
+            "$_MUX_": 5944,
+            "$_NAND_": 576,
+            "$_NOR_": 903,
+            "$_NOT_": 1285,
+            "$_ORNOT_": 178,
+            "$_OR_": 2698,
+            "$_SDFFE_PN0P_": 65,
+            "$_SDFF_PN0_": 24,
+            "$_XNOR_": 73,
+            "$_XOR_": 1437
+         }
+      }
+}
+

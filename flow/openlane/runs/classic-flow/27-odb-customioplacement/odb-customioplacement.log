@@ -1,0 +1,14 @@
+[WARNING ORD-0039] .openroad ignored with -python
+Top-level design name: hw_scheduler_top
+Block boundaries: 0 0 779000 789720
+Horizontal Tracks Origin: 340, Count: 1161, Step: 680
+Vertical Tracks Origin: 230, Count: 1693, Step: 460
+Placement details for the S side
+Virtual pin count:  0
+Actual pin count:  18
+Total pin count:  18
+Tracks count:  1693
+Tracks per pin:  94
+Used tracks count:  1599
+Unused track count:  94
+Starting track index:  47

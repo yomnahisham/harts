@@ -1,0 +1,79 @@
+// DESCRIPTION: Verilator output: Waivers generated with --waiver-output
+
+`verilator_config
+
+// Below are suggested waivers. You have three options:
+//   1. Fix the reason for the linter warning in the Verilog sources
+//   2. Keep the waiver permanently if you are sure it is okay
+//   3. Keep the waiver temporarily to suppress the output
+
+// lint_off -rule PINCONNECTEMPTY -file "*/Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v" -match "Instance pin connected by name with empty reference: 'need_word2'*"
+
+// lint_off -rule WIDTHEXPAND -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Operator SUB expects 32 bits on the LHS, but LHS's VARREF 'depth_work' generates 5 bits.*"
+
+// lint_off -rule WIDTHEXPAND -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'depth_work' generates 5 bits.*"
+
+// lint_off -rule WIDTHEXPAND -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Operator EQ expects 32 bits on the RHS, but RHS's VARREF 'depth_work' generates 5 bits.*"
+
+// lint_off -rule WIDTHEXPAND -file "*/Users/yomna/Documents/projects/harts/rtl/control_unit.v" -match "Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'tt_rd_period' generates 16 bits.*"
+
+// lint_off -rule WIDTHTRUNC -file "*/Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v" -match "Output port connection 'depth' expects 3 bits on the pin connection, but pin connection's VARREF 'pq_depth' generates 5 bits.*"
+
+// lint_off -rule BLKSEQ -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Blocking assignment '=' in sequential logic process*"
+
+// lint_off -rule BLKSEQ -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Blocking assignment '=' in sequential logic process*"
+
+// lint_off -rule BLKSEQ -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Blocking assignment '=' in sequential logic process*"
+
+// lint_off -rule BLKSEQ -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Blocking assignment '=' in sequential logic process*"
+
+// lint_off -rule BLKSEQ -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Blocking assignment '=' in sequential logic process*"
+
+// lint_off -rule BLKSEQ -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Blocking assignment '=' in sequential logic process*"
+
+// lint_off -rule BLKSEQ -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Blocking assignment '=' in sequential logic process*"
+
+// lint_off -rule BLKSEQ -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Blocking assignment '=' in sequential logic process*"
+
+// lint_off -rule BLKSEQ -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Blocking assignment '=' in sequential logic process*"
+
+// lint_off -rule BLKSEQ -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Blocking assignment '=' in sequential logic process*"
+
+// lint_off -rule BLKSEQ -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Blocking assignment '=' in sequential logic process*"
+
+// lint_off -rule BLKSEQ -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Blocking assignment '=' in sequential logic process*"
+
+// lint_off -rule BLKSEQ -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Blocking assignment '=' in sequential logic process*"
+
+// lint_off -rule BLKSEQ -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Blocking assignment '=' in sequential logic process*"
+
+// lint_off -rule BLKSEQ -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Blocking assignment '=' in sequential logic process*"
+
+// lint_off -rule BLKSEQ -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Blocking assignment '=' in sequential logic process*"
+
+// lint_off -rule BLKSEQ -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Blocking assignment '=' in sequential logic process*"
+
+// lint_off -rule BLKSEQ -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Blocking assignment '=' in sequential logic process*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v" -match "Signal is not driven, nor used: 'cmd_word2_valid'*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v" -match "Signal is not driven, nor used: 'cmd_word2'*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v" -match "Signal is not used: 'irq_index'*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/Users/yomna/Documents/projects/harts/rtl/control_unit.v" -match "Signal is not used: 'pq_head_key'*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/Users/yomna/Documents/projects/harts/rtl/control_unit.v" -match "Bits of signal are not used: 'pending_word1'[31:24,17:16]*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/Users/yomna/Documents/projects/harts/rtl/priority_queue.v" -match "Signal is not used: 'dbg_cell_valid'*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/Users/yomna/Documents/projects/harts/rtl/priority_queue.v" -match "Signal is not used: 'dbg_cell_id'*"
+
+// lint_off -rule UNUSEDSIGNAL -file "*/Users/yomna/Documents/projects/harts/rtl/priority_queue.v" -match "Signal is not used: 'dbg_cell_key'*"
+
+// lint_off -rule SYNCASYNCNET -file "*/Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v" -match "Signal flopped as both synchronous and async: 'hw_scheduler_top.sync_rst_d2a'*"
+
+// lint_off -rule SYNCASYNCNET -file "*/Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v" -match "Signal flopped as both synchronous and async: 'hw_scheduler_top.sync_rst_d2b'*"
+
+// lint_off -rule SYNCASYNCNET -file "*/Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v" -match "Signal flopped as both synchronous and async: 'hw_scheduler_top.sync_rst_d2d_scan'*"
+

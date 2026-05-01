@@ -77,6 +77,9 @@ module control_unit #(
     reg tt_clear_all;
     reg [15:0] pq_eff_abs_deadline;
     reg [15:0] pq_eff_remaining_wcet;
+    // Registered copy of current_task for tick-time table reads: shortens tick_pulse
+    // -> tt_rd_id -> task_table comb paths (tick_pulse only mux-selects a flop).
+    reg [ID_WIDTH-1:0] tt_rd_id_tick;
 
     wire [3:0] tt_rd_priority;
     wire [15:0] tt_rd_period;
@@ -141,7 +144,7 @@ module control_unit #(
 
     always @(*) begin
         tt_rd_id = task_id;
-        if (tick_pulse) tt_rd_id = current_task;  // deadline/wcet check needs current task
+        if (tick_pulse) tt_rd_id = tt_rd_id_tick;
         if (pending_word2) tt_rd_id = pending_task_id;
         if (sq_wake_valid) tt_rd_id = sq_wake_id;
         // OP_ACTIVATE reads pq_head so prep_tt_write copies the correct descriptor
@@ -203,7 +206,9 @@ module control_unit #(
             tt_wr_status <= 0;
             tt_wr_abs_deadline <= 0;
             tt_wr_remaining_wcet <= 0;
+            tt_rd_id_tick <= {ID_WIDTH{1'b1}};
         end else begin
+            tt_rd_id_tick <= current_task;
             tt_wr_en <= 1'b0;
             tt_clear_all <= 1'b0;
             pq_enqueue <= 1'b0;
@@ -423,7 +428,7 @@ module control_unit #(
             end
 
             // Deadline miss fires last so it overrides all other IRQ sources.
-            // Guard with !pending_word2 && !sq_wake_valid so tt_rd_id = current_task
+            // Guard with !pending_word2 && !sq_wake_valid so tt_rd_id tracks running task
             // (lower-priority mux entries would redirect to a different task).
             if (tick_pulse && !pending_word2 && !sq_wake_valid &&
                 current_task != {ID_WIDTH{1'b1}} && tt_rd_status == 3'b011 &&

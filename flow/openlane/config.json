@@ -1,5 +1,7 @@
 {
   "DESIGN_NAME": "hw_scheduler_top",
+  "PNR_SDC_FILE": "dir::sdc/hw_scheduler_top_pnr.sdc",
+  "SIGNOFF_SDC_FILE": "dir::sdc/hw_scheduler_top_signoff.sdc",
   "VERILOG_FILES": [
     "dir::../../rtl/hw_scheduler_top.v",
     "dir::../../rtl/control_unit.v",
@@ -13,8 +15,26 @@
     "dir::../../rtl/scan_chain.v"
   ],
   "CLOCK_PORT": "clk",
-  "CLOCK_PERIOD": 20,
+  "CLOCK_PERIOD": 100,
+  "SYNTH_STRATEGY": "DELAY 3",
+  "RT_MAX_LAYER": "met4",
   "FP_CORE_UTIL": 35,
   "PL_TARGET_DENSITY": 0.55,
-  "RUN_CTS": true
+  "RUN_CTS": true,
+  "DEFAULT_CORNER": "nom_ss_100C_1v60",
+  "RUN_POST_GRT_DESIGN_REPAIR": true,
+  "IO_PIN_ORDER_CFG": "dir::pin_order.cfg",
+  "DESIGN_REPAIR_MAX_SLEW_PCT": 30,
+  "DESIGN_REPAIR_MAX_CAP_PCT": 30,
+  "NON_DEFAULT_RULES": {
+    "clkndr": {
+      "width": "met2 0.28 met3 0.6 met4 0.6",
+      "spacing": "met2 0.28 met3 0.6 met4 0.6",
+      "via": "None"
+    }
+  },
+  "CTS_APPLY_NDR": "full",
+  "DRT_ASSIGN_NDR": {
+    "clk": "clkndr"
+  }
 }

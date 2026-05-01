@@ -1,0 +1,14 @@
+{
+    "json_h": "/Users/yomna/Documents/projects/harts/flow/openlane/runs/classic-flow/05-yosys-jsonheader/hw_scheduler_top.h.json",
+    "nl": "/Users/yomna/Documents/projects/harts/flow/openlane/runs/classic-flow/06-yosys-synthesis/hw_scheduler_top.nl.v",
+    "metrics": {
+        "design__lint_error__count": 0,
+        "design__lint_timing_construct__count": 0,
+        "design__lint_warning__count": 35,
+        "design__inferred_latch__count": 0,
+        "design__instance__count": 15996,
+        "design__instance__area": 206417.9712,
+        "design__instance_unmapped__count": 0,
+        "synthesis__check_error__count": 0
+    }
+}

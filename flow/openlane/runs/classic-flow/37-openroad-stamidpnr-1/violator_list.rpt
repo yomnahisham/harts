@@ -1,0 +1,12 @@
+
+===========================================================================
+Violator List
+============================================================================
+[hold in-reg] rst_n -> _28087_/RESET_B : -0.328319
+[hold in-reg] rst_n -> _28086_/RESET_B : -0.328311
+Writing metric timing__hold_vio__count__corner:nom_ss_100C_1v60: 2
+Writing metric timing__hold_r2r__ws__corner:nom_ss_100C_1v60: 0.559186
+Writing metric timing__hold_r2r_vio__count__corner:nom_ss_100C_1v60: 0
+Writing metric timing__setup_vio__count__corner:nom_ss_100C_1v60: 0
+Writing metric timing__setup_r2r__ws__corner:nom_ss_100C_1v60: 54.668259
+Writing metric timing__setup_r2r_vio__count__corner:nom_ss_100C_1v60: 0

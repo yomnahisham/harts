@@ -1,5 +1,5 @@
 $date
-	Thu Apr 30 11:21:02 2026
+	Sat May  2 00:33:12 2026
 $end
 $version
 	Icarus Verilog
@@ -119,62 +119,63 @@ $var reg 16 { tick_divider [15:0] $end
 $var reg 1 ! timer_enable $end
 $var reg 1 | tt_clear_all $end
 $var reg 4 } tt_rd_id [3:0] $end
-$var reg 16 ~ tt_wr_abs_deadline [15:0] $end
-$var reg 16 !" tt_wr_deadline [15:0] $end
-$var reg 1 "" tt_wr_en $end
-$var reg 4 #" tt_wr_id [3:0] $end
-$var reg 16 $" tt_wr_period [15:0] $end
-$var reg 1 %" tt_wr_preemptable $end
-$var reg 4 &" tt_wr_priority [3:0] $end
-$var reg 16 '" tt_wr_remaining_wcet [15:0] $end
-$var reg 3 (" tt_wr_status [2:0] $end
-$var reg 1 )" tt_wr_type $end
-$var reg 16 *" tt_wr_wcet [15:0] $end
+$var reg 4 ~ tt_rd_id_tick [3:0] $end
+$var reg 16 !" tt_wr_abs_deadline [15:0] $end
+$var reg 16 "" tt_wr_deadline [15:0] $end
+$var reg 1 #" tt_wr_en $end
+$var reg 4 $" tt_wr_id [3:0] $end
+$var reg 16 %" tt_wr_period [15:0] $end
+$var reg 1 &" tt_wr_preemptable $end
+$var reg 4 '" tt_wr_priority [3:0] $end
+$var reg 16 (" tt_wr_remaining_wcet [15:0] $end
+$var reg 3 )" tt_wr_status [2:0] $end
+$var reg 1 *" tt_wr_type $end
+$var reg 16 +" tt_wr_wcet [15:0] $end
 $scope module u_task_table $end
 $var wire 1 | clear_all $end
 $var wire 1 2 clk $end
-$var wire 1 +" rd_en $end
-$var wire 4 ," rd_id [3:0] $end
+$var wire 1 ," rd_en $end
+$var wire 4 -" rd_id [3:0] $end
 $var wire 1 = rst_n $end
-$var wire 16 -" wr_abs_deadline [15:0] $end
-$var wire 16 ." wr_deadline [15:0] $end
-$var wire 1 "" wr_en $end
-$var wire 4 /" wr_id [3:0] $end
-$var wire 16 0" wr_period [15:0] $end
-$var wire 1 %" wr_preemptable $end
-$var wire 4 1" wr_priority [3:0] $end
-$var wire 16 2" wr_remaining_wcet [15:0] $end
-$var wire 3 3" wr_status [2:0] $end
-$var wire 1 )" wr_type $end
-$var wire 16 4" wr_wcet [15:0] $end
-$var parameter 32 5" ID_WIDTH $end
-$var parameter 32 6" NUM_TASKS $end
-$var reg 16 7" rd_abs_deadline [15:0] $end
-$var reg 16 8" rd_deadline [15:0] $end
-$var reg 16 9" rd_period [15:0] $end
+$var wire 16 ." wr_abs_deadline [15:0] $end
+$var wire 16 /" wr_deadline [15:0] $end
+$var wire 1 #" wr_en $end
+$var wire 4 0" wr_id [3:0] $end
+$var wire 16 1" wr_period [15:0] $end
+$var wire 1 &" wr_preemptable $end
+$var wire 4 2" wr_priority [3:0] $end
+$var wire 16 3" wr_remaining_wcet [15:0] $end
+$var wire 3 4" wr_status [2:0] $end
+$var wire 1 *" wr_type $end
+$var wire 16 5" wr_wcet [15:0] $end
+$var parameter 32 6" ID_WIDTH $end
+$var parameter 32 7" NUM_TASKS $end
+$var reg 16 8" rd_abs_deadline [15:0] $end
+$var reg 16 9" rd_deadline [15:0] $end
+$var reg 16 :" rd_period [15:0] $end
 $var reg 1 Q rd_preemptable $end
-$var reg 4 :" rd_priority [3:0] $end
-$var reg 16 ;" rd_remaining_wcet [15:0] $end
-$var reg 3 <" rd_status [2:0] $end
+$var reg 4 ;" rd_priority [3:0] $end
+$var reg 16 <" rd_remaining_wcet [15:0] $end
+$var reg 3 =" rd_status [2:0] $end
 $var reg 1 M rd_type $end
-$var reg 16 =" rd_wcet [15:0] $end
-$var integer 32 >" i [31:0] $end
+$var reg 16 >" rd_wcet [15:0] $end
+$var integer 32 ?" i [31:0] $end
 $upscope $end
 $scope task prep_tt_write $end
 $upscope $end
 $upscope $end
 $scope task send_cmd $end
-$var reg 32 ?" w [31:0] $end
+$var reg 32 @" w [31:0] $end
 $upscope $end
 $scope task send_word2 $end
-$var reg 32 @" w2 [31:0] $end
+$var reg 32 A" w2 [31:0] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 $comment Show the parameter values. $end
 $dumpall
-b10000 6"
-b100 5"
+b10000 7"
+b100 6"
 b1001 i
 b1010 h
 b11 g
@@ -197,6 +198,7 @@ b100 W
 $end
 #0
 $dumpvars
+bx A"
 bx @"
 bx ?"
 bx >"
@@ -206,7 +208,7 @@ bx ;"
 bx :"
 bx 9"
 bx 8"
-bx 7"
+bx 5"
 bx 4"
 bx 3"
 bx 2"
@@ -215,17 +217,17 @@ bx 0"
 bx /"
 bx ."
 bx -"
-bx ,"
-1+"
-bx *"
-x)"
+1,"
+bx +"
+x*"
+bx )"
 bx ("
 bx '"
-bx &"
-x%"
+x&"
+bx %"
 bx $"
-bx #"
-x""
+x#"
+bx ""
 bx !"
 bx ~
 bx }
@@ -307,45 +309,46 @@ $end
 b0 s
 b0 r
 b0 O
-b0 ;"
-b0 T
-b0 7"
-b0 N
 b0 <"
+b0 T
+b0 8"
+b0 N
+b0 ="
 0Q
 0M
 b0 L
-b0 ="
+b0 >"
 b0 S
-b0 8"
-b0 R
 b0 9"
-b0 P
+b0 R
 b0 :"
+b0 P
+b0 ;"
 b0 *
 b0 u
 b0 }
-b0 ,"
-b0 '"
-b0 2"
-b0 ~
 b0 -"
+b1111 ~
 b0 ("
 b0 3"
-0%"
-0)"
-b0 *"
-b0 4"
 b0 !"
 b0 ."
+b0 )"
+b0 4"
+0&"
+0*"
+b0 +"
+b0 5"
+b0 ""
+b0 /"
+b0 %"
+b0 1"
+b0 '"
+b0 2"
 b0 $"
 b0 0"
-b0 &"
-b0 1"
-b0 #"
-b0 /"
 1|
-0""
+0#"
 b0 p
 b0 o
 b0 n
@@ -371,17 +374,17 @@ b1100100 "
 b1100100 {
 b0 l
 b0 w
-b10000 >"
+b10000 ?"
 12
 #10000
 02
 #15000
-b10000 >"
+b10000 ?"
 12
 #20000
 02
 #25000
-b10000 >"
+b10000 ?"
 12
 #30000
 02
@@ -389,20 +392,20 @@ b10000 >"
 0#
 0(
 0|
-b10000 >"
+b10000 ?"
 1=
 12
 #40000
 02
 #45000
 b10 }
-b10 ,"
+b10 -"
 b110 V
 b10 U
 13
 b1100010101010000001001000110100 4
 b1100010101010000001001000110100 E
-b1100010101010000001001000110100 ?"
+b1100010101010000001001000110100 @"
 12
 #50000
 02
@@ -422,28 +425,28 @@ b110 n
 16
 b10101011110011010000000011101111 5
 b10101011110011010000000011101111 F
-b10101011110011010000000011101111 @"
+b10101011110011010000000011101111 A"
 03
 02
 #75000
 b1100000000000110 '
 b1100000000000110 v
-b11101111 '"
-b11101111 2"
-b1001000110100 ~
-b1001000110100 -"
+b11101111 ("
+b11101111 3"
 b1001000110100 !"
 b1001000110100 ."
-b11101111 *"
-b11101111 4"
-b1010101111001101 $"
-b1010101111001101 0"
-1)"
-b1010 &"
-b1010 1"
-b10 #"
-b10 /"
-1""
+b1001000110100 ""
+b1001000110100 /"
+b11101111 +"
+b11101111 5"
+b1010101111001101 %"
+b1010101111001101 1"
+1*"
+b1010 '"
+b1010 2"
+b10 $"
+b10 0"
+1#"
 0q
 0-
 12
@@ -455,19 +458,19 @@ b1010 u
 b11101111 s
 b1001000110100 r
 b11101111 O
-b11101111 ;"
+b11101111 <"
 b1001000110100 T
-b1001000110100 7"
+b1001000110100 8"
 1M
 b11101111 L
-b11101111 ="
+b11101111 >"
 b1001000110100 S
-b1001000110100 8"
+b1001000110100 9"
 b1010101111001101 R
-b1010101111001101 9"
+b1010101111001101 :"
 b1010 P
-b1010 :"
-0""
+b1010 ;"
+0#"
 12
 #90000
 06
@@ -484,7 +487,7 @@ b111 V
 13
 b1110010000000000000000000000000 4
 b1110010000000000000000000000000 E
-b1110010000000000000000000000000 ?"
+b1110010000000000000000000000000 @"
 12
 #110000
 02
@@ -501,15 +504,15 @@ b111 n
 16
 b10010001101000101011001111000 5
 b10010001101000101011001111000 F
-b10010001101000101011001111000 @"
+b10010001101000101011001111000 A"
 03
 02
 #135000
 b1100000000000111 '
 b1100000000000111 v
-b100 ("
-b100 3"
-1""
+b100 )"
+b100 4"
+1#"
 1$
 b10010001101000101011001111000 &
 b10010001101000101011001111000 x
@@ -522,9 +525,9 @@ b10 y
 02
 #145000
 b100 N
-b100 <"
+b100 ="
 0$
-0""
+0#"
 b10 ?
 b10010001101000101011001111000 >
 b1 D

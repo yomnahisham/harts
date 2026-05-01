@@ -1,0 +1,20 @@
+qt.qpa.fonts: Populating font family aliases took 47 ms. Replace uses of missing font family "Monospace" with one that exists to avoid this cost. 
+Reading OpenROAD database at '/Users/yomna/Documents/projects/harts/flow/openlane/runs/classic-flow/21-openroad-generatepdn/hw_scheduler_top.odb'…
+Reading library file at '/Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib'…
+Reading design constraints file at '/Users/yomna/Documents/projects/harts/flow/openlane/sdc/hw_scheduler_top_pnr.sdc'…
+[INFO]: Creating clock {clk} for port clk with period: 100
+[INFO]: Setting clock uncertainty to: 0.12
+[INFO]: Source clock latency 0 (macro boundary)
+[WARNING GUI-0066] Heat map "Routing Congestion" has not been populated with data.
+Design area 206418 um^2 35% utilization.
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             1.18e-03   2.79e-06   3.39e-08   1.19e-03  99.6%
+Combinational          3.30e-06   1.50e-06   5.01e-08   4.85e-06   0.4%
+Clock                  0.00e+00   0.00e+00   1.83e-09   1.83e-09   0.0%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  1.19e-03   4.29e-06   8.58e-08   1.19e-03 100.0%
+                          99.6%       0.4%       0.0%

@@ -1,0 +1,181 @@
+%Warning-PINCONNECTEMPTY: /Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v:219:10: Instance pin connected by name with empty reference: 'need_word2'
+  219 |         .need_word2(),
+      |          ^~~~~~~~~~
+                          ... For warning description see https://verilator.org/warn/PINCONNECTEMPTY?v=5.044
+                          ... Use "/* verilator lint_off PINCONNECTEMPTY */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: /Users/yomna/Documents/projects/harts/rtl/sleep_queue.v:66:40: Operator SUB expects 32 bits on the LHS, but LHS's VARREF 'depth_work' generates 5 bits.
+                                                                                   : ... note: In instance 'hw_scheduler_top.u_sq'
+   66 |                     if (i < depth_work - 1) begin
+      |                                        ^
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.044
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: /Users/yomna/Documents/projects/harts/rtl/sleep_queue.v:80:21: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'depth_work' generates 5 bits.
+                                                                                   : ... note: In instance 'hw_scheduler_top.u_sq'
+   80 |                 pos = depth_work;
+      |                     ^
+%Warning-WIDTHEXPAND: /Users/yomna/Documents/projects/harts/rtl/sleep_queue.v:82:73: Operator EQ expects 32 bits on the RHS, but RHS's VARREF 'depth_work' generates 5 bits.
+                                                                                   : ... note: In instance 'hw_scheduler_top.u_sq'
+   82 |                     if (i < depth_work && enq_count < cnt_mem[i] && pos == depth_work)
+      |                                                                         ^~
+%Warning-WIDTHEXPAND: /Users/yomna/Documents/projects/harts/rtl/control_unit.v:329:44: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's VARREF 'tt_rd_period' generates 16 bits.
+                                                                                     : ... note: In instance 'hw_scheduler_top.u_ctrl'
+  329 |                             sq_enq_counter <= tt_rd_period;
+      |                                            ^~
+%Warning-WIDTHTRUNC: /Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v:185:10: Output port connection 'depth' expects 3 bits on the pin connection, but pin connection's VARREF 'pq_depth' generates 5 bits.
+                                                                                        : ... note: In instance 'hw_scheduler_top'
+  185 |         .depth(pq_depth)
+      |          ^~~~~
+                     ... For warning description see https://verilator.org/warn/WIDTHTRUNC?v=5.044
+                     ... Use "/* verilator lint_off WIDTHTRUNC */" and lint_on around source to disable this message.
+%Warning-BLKSEQ: /Users/yomna/Documents/projects/harts/rtl/sleep_queue.v:49:25: Blocking assignment '=' in sequential logic process
+                                                                              : ... note: In instance 'hw_scheduler_top.u_sq'
+                                                                              : ... Suggest using delayed assignment '<='
+   49 |             depth_work  = depth_r;
+      |                         ^
+                 ... For warning description see https://verilator.org/warn/BLKSEQ?v=5.044
+                 ... Use "/* verilator lint_off BLKSEQ */" and lint_on around source to disable this message.
+%Warning-BLKSEQ: /Users/yomna/Documents/projects/harts/rtl/sleep_queue.v:55:36: Blocking assignment '=' in sequential logic process
+                                                                              : ... note: In instance 'hw_scheduler_top.u_sq'
+                                                                              : ... Suggest using delayed assignment '<='
+   55 |                         cnt_mem[i] = cnt_mem[i] - 1'b1;
+      |                                    ^
+%Warning-BLKSEQ: /Users/yomna/Documents/projects/harts/rtl/sleep_queue.v:67:38: Blocking assignment '=' in sequential logic process
+                                                                              : ... note: In instance 'hw_scheduler_top.u_sq'
+                                                                              : ... Suggest using delayed assignment '<='
+   67 |                         id_mem[i]    = id_mem[i+1];
+      |                                      ^
+%Warning-BLKSEQ: /Users/yomna/Documents/projects/harts/rtl/sleep_queue.v:68:38: Blocking assignment '=' in sequential logic process
+                                                                              : ... note: In instance 'hw_scheduler_top.u_sq'
+                                                                              : ... Suggest using delayed assignment '<='
+   68 |                         cnt_mem[i]   = cnt_mem[i+1];
+      |                                      ^
+%Warning-BLKSEQ: /Users/yomna/Documents/projects/harts/rtl/sleep_queue.v:69:38: Blocking assignment '=' in sequential logic process
+                                                                              : ... note: In instance 'hw_scheduler_top.u_sq'
+                                                                              : ... Suggest using delayed assignment '<='
+   69 |                         valid_mem[i] = valid_mem[i+1];
+      |                                      ^
+%Warning-BLKSEQ: /Users/yomna/Documents/projects/harts/rtl/sleep_queue.v:72:41: Blocking assignment '=' in sequential logic process
+                                                                              : ... note: In instance 'hw_scheduler_top.u_sq'
+                                                                              : ... Suggest using delayed assignment '<='
+   72 |                 id_mem[depth_work-1]    = {ID_WIDTH{1'b0}};
+      |                                         ^
+%Warning-BLKSEQ: /Users/yomna/Documents/projects/harts/rtl/sleep_queue.v:73:41: Blocking assignment '=' in sequential logic process
+                                                                              : ... note: In instance 'hw_scheduler_top.u_sq'
+                                                                              : ... Suggest using delayed assignment '<='
+   73 |                 cnt_mem[depth_work-1]   = {CNT_WIDTH{1'b0}};
+      |                                         ^
+%Warning-BLKSEQ: /Users/yomna/Documents/projects/harts/rtl/sleep_queue.v:74:41: Blocking assignment '=' in sequential logic process
+                                                                              : ... note: In instance 'hw_scheduler_top.u_sq'
+                                                                              : ... Suggest using delayed assignment '<='
+   74 |                 valid_mem[depth_work-1] = 1'b0;
+      |                                         ^
+%Warning-BLKSEQ: /Users/yomna/Documents/projects/harts/rtl/sleep_queue.v:75:41: Blocking assignment '=' in sequential logic process
+                                                                              : ... note: In instance 'hw_scheduler_top.u_sq'
+                                                                              : ... Suggest using delayed assignment '<='
+   75 |                 depth_work              = depth_work - 1'b1;
+      |                                         ^
+%Warning-BLKSEQ: /Users/yomna/Documents/projects/harts/rtl/sleep_queue.v:80:21: Blocking assignment '=' in sequential logic process
+                                                                              : ... note: In instance 'hw_scheduler_top.u_sq'
+                                                                              : ... Suggest using delayed assignment '<='
+   80 |                 pos = depth_work;
+      |                     ^
+%Warning-BLKSEQ: /Users/yomna/Documents/projects/harts/rtl/sleep_queue.v:83:29: Blocking assignment '=' in sequential logic process
+                                                                              : ... note: In instance 'hw_scheduler_top.u_sq'
+                                                                              : ... Suggest using delayed assignment '<='
+   83 |                         pos = i;
+      |                             ^
+%Warning-BLKSEQ: /Users/yomna/Documents/projects/harts/rtl/sleep_queue.v:87:38: Blocking assignment '=' in sequential logic process
+                                                                              : ... note: In instance 'hw_scheduler_top.u_sq'
+                                                                              : ... Suggest using delayed assignment '<='
+   87 |                         id_mem[i]    = id_mem[i-1];
+      |                                      ^
+%Warning-BLKSEQ: /Users/yomna/Documents/projects/harts/rtl/sleep_queue.v:88:38: Blocking assignment '=' in sequential logic process
+                                                                              : ... note: In instance 'hw_scheduler_top.u_sq'
+                                                                              : ... Suggest using delayed assignment '<='
+   88 |                         cnt_mem[i]   = cnt_mem[i-1];
+      |                                      ^
+%Warning-BLKSEQ: /Users/yomna/Documents/projects/harts/rtl/sleep_queue.v:89:38: Blocking assignment '=' in sequential logic process
+                                                                              : ... note: In instance 'hw_scheduler_top.u_sq'
+                                                                              : ... Suggest using delayed assignment '<='
+   89 |                         valid_mem[i] = valid_mem[i-1];
+      |                                      ^
+%Warning-BLKSEQ: /Users/yomna/Documents/projects/harts/rtl/sleep_queue.v:92:32: Blocking assignment '=' in sequential logic process
+                                                                              : ... note: In instance 'hw_scheduler_top.u_sq'
+                                                                              : ... Suggest using delayed assignment '<='
+   92 |                 id_mem[pos]    = enq_id;
+      |                                ^
+%Warning-BLKSEQ: /Users/yomna/Documents/projects/harts/rtl/sleep_queue.v:93:32: Blocking assignment '=' in sequential logic process
+                                                                              : ... note: In instance 'hw_scheduler_top.u_sq'
+                                                                              : ... Suggest using delayed assignment '<='
+   93 |                 cnt_mem[pos]   = enq_count;
+      |                                ^
+%Warning-BLKSEQ: /Users/yomna/Documents/projects/harts/rtl/sleep_queue.v:94:32: Blocking assignment '=' in sequential logic process
+                                                                              : ... note: In instance 'hw_scheduler_top.u_sq'
+                                                                              : ... Suggest using delayed assignment '<='
+   94 |                 valid_mem[pos] = 1'b1;
+      |                                ^
+%Warning-BLKSEQ: /Users/yomna/Documents/projects/harts/rtl/sleep_queue.v:95:32: Blocking assignment '=' in sequential logic process
+                                                                              : ... note: In instance 'hw_scheduler_top.u_sq'
+                                                                              : ... Suggest using delayed assignment '<='
+   95 |                 depth_work     = depth_work + 1'b1;
+      |                                ^
+%Warning-UNUSEDSIGNAL: /Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v:20:10: Signal is not driven, nor used: 'cmd_word2_valid'
+                                                                                         : ... note: In instance 'hw_scheduler_top'
+   20 |     wire cmd_word2_valid;
+      |          ^~~~~~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.044
+                       ... Use "/* verilator lint_off UNUSEDSIGNAL */" and lint_on around source to disable this message.
+%Warning-UNUSEDSIGNAL: /Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v:21:17: Signal is not driven, nor used: 'cmd_word2'
+                                                                                         : ... note: In instance 'hw_scheduler_top'
+   21 |     wire [31:0] cmd_word2;
+      |                 ^~~~~~~~~
+%Warning-UNUSEDSIGNAL: /Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v:117:16: Signal is not used: 'irq_index'
+                                                                                          : ... note: In instance 'hw_scheduler_top'
+  117 |     wire [2:0] irq_index;
+      |                ^~~~~~~~~
+%Warning-UNUSEDSIGNAL: /Users/yomna/Documents/projects/harts/rtl/control_unit.v:18:32: Signal is not used: 'pq_head_key'
+                                                                                     : ... note: In instance 'hw_scheduler_top.u_ctrl'
+   18 |     input wire [KEY_WIDTH-1:0] pq_head_key,
+      |                                ^~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /Users/yomna/Documents/projects/harts/rtl/control_unit.v:63:16: Bits of signal are not used: 'pending_word1'[31:24,17:16]
+                                                                                     : ... note: In instance 'hw_scheduler_top.u_ctrl'
+   63 |     reg [31:0] pending_word1;
+      |                ^~~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /Users/yomna/Documents/projects/harts/rtl/priority_queue.v:115:32: Signal is not used: 'dbg_cell_valid'
+                                                                                        : ... note: In instance 'hw_scheduler_top.u_pq'
+  115 |     wire [DEPTH-1:0]           dbg_cell_valid;
+      |                                ^~~~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /Users/yomna/Documents/projects/harts/rtl/priority_queue.v:116:32: Signal is not used: 'dbg_cell_id'
+                                                                                        : ... note: In instance 'hw_scheduler_top.u_pq'
+  116 |     wire [ID_WIDTH*DEPTH-1:0]  dbg_cell_id;
+      |                                ^~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /Users/yomna/Documents/projects/harts/rtl/priority_queue.v:117:32: Signal is not used: 'dbg_cell_key'
+                                                                                        : ... note: In instance 'hw_scheduler_top.u_pq'
+  117 |     wire [KEY_WIDTH*DEPTH-1:0] dbg_cell_key;
+      |                                ^~~~~~~~~~~~
+%Warning-SYNCASYNCNET: /Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v:39:9: Signal flopped as both synchronous and async: 'hw_scheduler_top.sync_rst_d2a'
+                       /Users/yomna/Documents/projects/harts/rtl/spi_slave_if.v:23:14: ... Location of async usage
+   23 |         if (!rst_n) begin
+      |              ^~~~~
+                       /Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v:70:14: ... Location of sync usage
+   70 |         if (!rst_spi_tm_n)
+      |              ^~~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/SYNCASYNCNET?v=5.044
+                       ... Use "/* verilator lint_off SYNCASYNCNET */" and lint_on around source to disable this message.
+%Warning-SYNCASYNCNET: /Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v:40:9: Signal flopped as both synchronous and async: 'hw_scheduler_top.sync_rst_d2b'
+                       /Users/yomna/Documents/projects/harts/rtl/priority_queue.v:30:14: ... Location of async usage
+   30 |         if (!rst_n) begin
+      |              ^~~~~
+                       /Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v:96:14: ... Location of sync usage
+   96 |         if (!rst_pq_n) begin
+      |              ^~~~~~~~
+%Warning-SYNCASYNCNET: /Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v:43:9: Signal flopped as both synchronous and async: 'hw_scheduler_top.sync_rst_d2d_scan'
+                       /Users/yomna/Documents/projects/harts/rtl/scan_chain.v:13:14: ... Location of async usage
+   13 |         if (!rst_n) begin
+      |              ^~~~~
+                       /Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v:135:14: ... Location of sync usage
+  135 |         if (!rst_glue_scan_n) begin
+      |              ^~~~~~~~~~~~~~~
+- V e r i l a t i o n   R e p o r t: Verilator 5.044 2026-01-01 rev v5.040
+- Verilator: Built from 2.446 MB sources in 457 modules, into 0.282 MB in 3 C++ files needing 0.000 MB
+- Verilator: Walltime 0.052 s (elab=0.009, cvt=0.018, bld=0.000); cpu 0.050 s on 1 threads; alloced 23.547 MB

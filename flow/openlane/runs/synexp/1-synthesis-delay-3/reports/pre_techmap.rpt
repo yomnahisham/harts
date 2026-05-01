@@ -1,0 +1,49 @@
+139. Printing statistics.
+
+=== hw_scheduler_top ===
+
+        +----------Local Count, excluding submodules.
+        | 
+    20061 wires
+    22766 wire bits
+      246 public wires
+     2951 public wire bits
+       11 ports
+       18 port bits
+    22693 cells
+     6323   $_ANDNOT_
+      414   $_AND_
+     1671   $_DFFE_PN0P_
+       16   $_DFFE_PN1P_
+       40   $_DFFE_PP_
+     1040   $_DFF_PN0_
+        6   $_DFF_PN1_
+     5944   $_MUX_
+      576   $_NAND_
+      903   $_NOR_
+     1285   $_NOT_
+      178   $_ORNOT_
+     2698   $_OR_
+       65   $_SDFFE_PN0P_
+       24   $_SDFF_PN0_
+       73   $_XNOR_
+     1437   $_XOR_
+
+   Area for cell type $_ANDNOT_ is unknown!
+   Area for cell type $_AND_ is unknown!
+   Area for cell type $_DFFE_PN0P_ is unknown!
+   Area for cell type $_DFFE_PN1P_ is unknown!
+   Area for cell type $_DFFE_PP_ is unknown!
+   Area for cell type $_DFF_PN0_ is unknown!
+   Area for cell type $_DFF_PN1_ is unknown!
+   Area for cell type $_MUX_ is unknown!
+   Area for cell type $_NAND_ is unknown!
+   Area for cell type $_NOR_ is unknown!
+   Area for cell type $_NOT_ is unknown!
+   Area for cell type $_ORNOT_ is unknown!
+   Area for cell type $_OR_ is unknown!
+   Area for cell type $_SDFFE_PN0P_ is unknown!
+   Area for cell type $_SDFF_PN0_ is unknown!
+   Area for cell type $_XNOR_ is unknown!
+   Area for cell type $_XOR_ is unknown!
+
