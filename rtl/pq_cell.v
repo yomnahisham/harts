@@ -33,8 +33,13 @@ module pq_cell #(
     assign pass_id    = dequeue ? (in_beats_right ? right_id  : in_id) : (in_beats_cell  ? cell_id   : in_id);
     assign pass_key   = dequeue ? (in_beats_right ? right_key : in_key) : (in_beats_cell  ? cell_key  : in_key);
 
+    // async reset only on rst_n; flush is synchronous (Yosys rejects !rst_n||flush in one condition with "Multiple edge sensitive events" on this reg bank??)
     always @(posedge clk or negedge rst_n) begin
-        if (!rst_n || flush) begin
+        if (!rst_n) begin
+            cell_id    <= {ID_WIDTH{1'b0}};
+            cell_key   <= {KEY_WIDTH{1'b0}};
+            cell_valid <= 1'b0;
+        end else if (flush) begin
             cell_id    <= {ID_WIDTH{1'b0}};
             cell_key   <= {KEY_WIDTH{1'b0}};
             cell_valid <= 1'b0;
