@@ -1,7 +1,4 @@
-module task_table #(
-    parameter NUM_TASKS = 16,
-    parameter ID_WIDTH = 4
-) (
+module task_table #(parameter NUM_TASKS = 16, parameter ID_WIDTH = 4) (
     input wire clk,
     input wire rst_n,
     input wire clear_all,

@@ -1,6 +1,4 @@
-module scan_chain #(
-    parameter WIDTH = 256
-) (
+module scan_chain #(parameter WIDTH = 256) (
     input wire clk,
     input wire rst_n,
     input wire scan_en,

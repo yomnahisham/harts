@@ -3,25 +3,21 @@
 // only one wake fires per clock cycle, but if multiple entries expire in the
 // same tick the subsequent ones wake on consecutive cycles without waiting
 // for the next tick pulse (control_unit handles one sq_wake_valid per cycle)
-module sleep_queue #(
-    parameter DEPTH     = 16,
-    parameter ID_WIDTH  = 4,
-    parameter CNT_WIDTH = 32
-) (
-    input  wire clk,
-    input  wire rst_n,
-    input  wire flush,
-    input  wire enqueue,
-    input  wire tick,
-    input  wire [ID_WIDTH-1:0]  enq_id,
-    input  wire [CNT_WIDTH-1:0] enq_count,
+module sleep_queue #( parameter DEPTH = 16, parameter ID_WIDTH  = 4, parameter CNT_WIDTH = 32) (
+    input wire clk,
+    input wire rst_n,
+    input wire flush,
+    input wire enqueue,
+    input wire tick,
+    input wire [ID_WIDTH-1:0]  enq_id,
+    input wire [CNT_WIDTH-1:0] enq_count,
     output reg  wake_valid,
     output reg  [ID_WIDTH-1:0] wake_id,
     output wire [$clog2(DEPTH+1)-1:0] depth
 );
-    reg [ID_WIDTH-1:0]  id_mem    [0:DEPTH-1];
-    reg [CNT_WIDTH-1:0] cnt_mem   [0:DEPTH-1];
-    reg                 valid_mem [0:DEPTH-1];
+    reg [ID_WIDTH-1:0] id_mem [0:DEPTH-1];
+    reg [CNT_WIDTH-1:0] cnt_mem [0:DEPTH-1];
+    reg valid_mem [0:DEPTH-1];
     reg [$clog2(DEPTH+1)-1:0] depth_r;
     reg [$clog2(DEPTH+1)-1:0] depth_work;
     integer i;

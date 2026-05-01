@@ -75,6 +75,8 @@ module control_unit #(
     reg [15:0] tt_wr_remaining_wcet;
     reg [ID_WIDTH-1:0] tt_rd_id;
     reg tt_clear_all;
+    reg [15:0] pq_eff_abs_deadline;
+    reg [15:0] pq_eff_remaining_wcet;
 
     wire [3:0] tt_rd_priority;
     wire [15:0] tt_rd_period;
@@ -145,11 +147,25 @@ module control_unit #(
         // OP_ACTIVATE reads pq_head so prep_tt_write copies the correct descriptor
         if (cmd_valid && opcode == OP_ACTIVATE) tt_rd_id = pq_head_id;
 
+        // LLF needs an abs_deadline that may not yet be committed to the task table:
+        // at RESUME the NBA hasn't landed, so compute it fresh; otherwise use stored value.
+        if (cmd_valid && opcode == OP_RESUME)
+            pq_eff_abs_deadline = tick_count[15:0] + tt_rd_deadline;
+        else
+            pq_eff_abs_deadline = tt_rd_abs_deadline;
+
+        // At sq_wake the task just woke from sleep; remaining_wcet should be the full
+        // wcet for the new period, not the (possibly depleted) stored value.
+        if (sq_wake_valid)
+            pq_eff_remaining_wcet = tt_rd_wcet;
+        else
+            pq_eff_remaining_wcet = tt_rd_remaining_wcet;
+
         case (sched_mode)
             2'b00: pq_enq_key = {12'd0, tt_rd_priority};
             2'b01: pq_enq_key = ~tt_rd_period;
             2'b10: pq_enq_key = ~(tick_count[15:0] + tt_rd_deadline);
-            default: pq_enq_key = ~(tt_rd_abs_deadline - tt_rd_remaining_wcet);
+            default: pq_enq_key = ~(pq_eff_abs_deadline - pq_eff_remaining_wcet);
         endcase
     end
 
@@ -303,12 +319,20 @@ module control_unit #(
                         rsp_word <= 32'h0000_c008;
                     end
                     OP_YIELD: begin
-                        sq_enq_id <= task_id;
-                        sq_enq_counter <= tt_rd_period;
-                        sq_enqueue <= 1'b1;
-                        prep_tt_write(task_id);
-                        tt_wr_status <= 3'b100;
-                        rsp_word <= 32'h0000_c009;
+                        if (tt_rd_period != 16'd0) begin
+                            sq_enq_id <= task_id;
+                            sq_enq_counter <= tt_rd_period;
+                            sq_enqueue <= 1'b1;
+                            prep_tt_write(task_id);
+                            tt_wr_status <= 3'b100;
+                            // pre-compute abs_deadline for the next period so LLF key
+                            // is correct when the task wakes from the sleep queue
+                            tt_wr_abs_deadline <= tick_count[15:0] + tt_rd_period + tt_rd_deadline;
+                            tt_wr_remaining_wcet <= tt_rd_wcet;
+                            rsp_word <= 32'h0000_c009;
+                        end else begin
+                            rsp_word <= 32'hdead_0004; // error: aperiodic task cannot yield
+                        end
                     end
                     OP_SUSPEND: begin
                         prep_tt_write(task_id);
@@ -381,6 +405,7 @@ module control_unit #(
             if (sq_wake_valid) begin
                 prep_tt_write(sq_wake_id);
                 tt_wr_status <= 3'b010;
+                tt_wr_remaining_wcet <= tt_rd_wcet; // reset for new period
                 pq_enq_id <= sq_wake_id;
                 pq_enqueue <= 1'b1;
                 irq_n <= 1'b0;

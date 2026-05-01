@@ -3,11 +3,7 @@
 // enqueue: O(DEPTH) combinational ripple, 1-cycle latency
 // dequeue: all cells shift left simultaneously, 1-cycle latency
 // simultaneous enqueue+dequeue supported (net depth unchanged)
-module priority_queue #(
-    parameter DEPTH     = 16,
-    parameter ID_WIDTH  = 4,
-    parameter KEY_WIDTH = 16
-) (
+module priority_queue #(parameter DEPTH = 16, parameter ID_WIDTH = 4, parameter KEY_WIDTH = 16) (
     input  wire clk,
     input  wire rst_n,
     input  wire enqueue,
@@ -17,7 +13,7 @@ module priority_queue #(
     input  wire [KEY_WIDTH-1:0] enq_key,
     output wire [ID_WIDTH-1:0]  head_id,
     output wire [KEY_WIDTH-1:0] head_key,
-    output wire                 head_valid,
+    output wire head_valid,
     output wire [$clog2(DEPTH+1)-1:0] depth
 );
     reg [$clog2(DEPTH+1)-1:0] depth_r;

@@ -49,8 +49,9 @@ void app_main(void) {
 
     ESP_ERROR_CHECK(sched_init(IRQ_PIN, on_scheduler_irq));
 
-    // EDF mode, tick divider=99 (~100us ticks at 10MHz), preemption enabled
-    sched_configure(MODE_EDF, 99, SCHED_FLAG_PREEMPT);
+    // EDF mode, tick divider=99 (~100us ticks at 10MHz), preemption enabled,
+    // all 8 ext_irq lines treated as fast (trigger immediate context switch)
+    sched_configure(MODE_EDF, 99, SCHED_FLAG_PREEMPT, 0xFF);
 
     // create tasks (they start suspended)
     sched_create(&t1);

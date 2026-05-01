@@ -104,8 +104,14 @@ sched_err_t sched_init(gpio_num_t irq_pin, gpio_isr_t isr_handler) {
 }
 
 // ---- scheduler control ------------------------------------------------------
-sched_err_t sched_configure(sched_mode_t mode, uint8_t tick_div, uint8_t flags) {
-    sched_xfer(mk_word(0x1, 0, (uint8_t)mode, tick_div, flags));
+sched_err_t sched_configure(sched_mode_t mode, uint8_t tick_div, uint8_t flags, uint8_t fast_mask) {
+    // CONFIG word: [31:28]=0x1, [27:20]=fast_mask, [17:16]=sched_mode, [15:8]=tick_divider, [7:0]=flags
+    uint32_t w = (0x1u << 28) |
+                 ((uint32_t)fast_mask << 20) |
+                 ((uint32_t)(mode & 0x3u) << 16) |
+                 ((uint32_t)tick_div << 8) |
+                 (uint32_t)flags;
+    sched_xfer(w);
     return SCHED_OK;
 }
 

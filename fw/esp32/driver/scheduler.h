@@ -50,7 +50,9 @@ typedef struct {
 sched_err_t sched_init(gpio_num_t irq_pin, gpio_isr_t isr_handler);
 
 // ---- scheduler control ------------------------------------------------------
-sched_err_t sched_configure(sched_mode_t mode, uint8_t tick_div, uint8_t flags);
+// fast_mask: 8-bit mask of ext_irq lines treated as fast (preempt immediately)
+//            pass 0xFF to treat all lines as fast, 0x00 for all slow
+sched_err_t sched_configure(sched_mode_t mode, uint8_t tick_div, uint8_t flags, uint8_t fast_mask);
 sched_err_t sched_run(void);
 sched_err_t sched_stop(void);
 // safe reset: hardware requires 0xAD key; clears all state
