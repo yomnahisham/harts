@@ -1,0 +1,548 @@
+$date
+	Fri May  1 23:41:13 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_phase1_vcd $end
+$var wire 1 ! timer_enable $end
+$var wire 16 " tick_divider [15:0] $end
+$var wire 1 # sq_flush $end
+$var wire 1 $ sq_enqueue $end
+$var wire 4 % sq_enq_id [3:0] $end
+$var wire 32 & sq_enq_counter [31:0] $end
+$var wire 32 ' rsp_word [31:0] $end
+$var wire 1 ( pq_flush $end
+$var wire 1 ) pq_enqueue $end
+$var wire 16 * pq_enq_key [15:0] $end
+$var wire 4 + pq_enq_id [3:0] $end
+$var wire 1 , pq_dequeue $end
+$var wire 1 - need_word2 $end
+$var wire 8 . irq_reason [7:0] $end
+$var wire 1 / irq_n $end
+$var wire 8 0 fast_mask [7:0] $end
+$var wire 4 1 current_task [3:0] $end
+$var reg 1 2 clk $end
+$var reg 1 3 cmd_valid $end
+$var reg 32 4 cmd_word [31:0] $end
+$var reg 32 5 cmd_word2 [31:0] $end
+$var reg 1 6 cmd_word2_valid $end
+$var reg 1 7 fast_irq $end
+$var reg 1 8 irq_pending $end
+$var reg 5 9 pq_depth [4:0] $end
+$var reg 4 : pq_head_id [3:0] $end
+$var reg 16 ; pq_head_key [15:0] $end
+$var reg 1 < pq_head_valid $end
+$var reg 1 = rst_n $end
+$var reg 32 > seen_sq_counter [31:0] $end
+$var reg 4 ? seen_sq_id [3:0] $end
+$var reg 5 @ sq_depth [4:0] $end
+$var reg 4 A sq_wake_id [3:0] $end
+$var reg 1 B sq_wake_valid $end
+$var reg 1 C tick_pulse $end
+$var integer 32 D seen_sq_enqueue [31:0] $end
+$scope module dut $end
+$var wire 1 2 clk $end
+$var wire 1 3 cmd_valid $end
+$var wire 32 E cmd_word [31:0] $end
+$var wire 32 F cmd_word2 [31:0] $end
+$var wire 1 6 cmd_word2_valid $end
+$var wire 1 7 fast_irq $end
+$var wire 1 8 irq_pending $end
+$var wire 5 G pq_depth [4:0] $end
+$var wire 4 H pq_head_id [3:0] $end
+$var wire 16 I pq_head_key [15:0] $end
+$var wire 1 < pq_head_valid $end
+$var wire 1 = rst_n $end
+$var wire 5 J sq_depth [4:0] $end
+$var wire 4 K sq_wake_id [3:0] $end
+$var wire 1 B sq_wake_valid $end
+$var wire 1 C tick_pulse $end
+$var wire 16 L tt_rd_wcet [15:0] $end
+$var wire 1 M tt_rd_type $end
+$var wire 3 N tt_rd_status [2:0] $end
+$var wire 16 O tt_rd_remaining_wcet [15:0] $end
+$var wire 4 P tt_rd_priority [3:0] $end
+$var wire 1 Q tt_rd_preemptable $end
+$var wire 16 R tt_rd_period [15:0] $end
+$var wire 16 S tt_rd_deadline [15:0] $end
+$var wire 16 T tt_rd_abs_deadline [15:0] $end
+$var wire 4 U task_id [3:0] $end
+$var wire 4 V opcode [3:0] $end
+$var parameter 32 W ID_WIDTH $end
+$var parameter 32 X KEY_WIDTH $end
+$var parameter 32 Y NUM_TASKS $end
+$var parameter 4 Z OP_ACTIVATE $end
+$var parameter 4 [ OP_CONFIG $end
+$var parameter 4 \ OP_CREATE $end
+$var parameter 4 ] OP_DELETE $end
+$var parameter 4 ^ OP_MODIFY $end
+$var parameter 4 _ OP_NOP $end
+$var parameter 4 ` OP_QUERY $end
+$var parameter 4 a OP_RESET $end
+$var parameter 4 b OP_RESUME $end
+$var parameter 4 c OP_RUN $end
+$var parameter 4 d OP_SCAN $end
+$var parameter 4 e OP_SLEEP $end
+$var parameter 4 f OP_SSLEEP $end
+$var parameter 4 g OP_STOP $end
+$var parameter 4 h OP_SUSPEND $end
+$var parameter 4 i OP_YIELD $end
+$var reg 4 j current_task [3:0] $end
+$var reg 8 k fast_mask [7:0] $end
+$var reg 8 l flags_reg [7:0] $end
+$var reg 1 / irq_n $end
+$var reg 8 m irq_reason [7:0] $end
+$var reg 1 - need_word2 $end
+$var reg 4 n pending_opcode [3:0] $end
+$var reg 4 o pending_task_id [3:0] $end
+$var reg 32 p pending_word1 [31:0] $end
+$var reg 1 q pending_word2 $end
+$var reg 1 , pq_dequeue $end
+$var reg 16 r pq_eff_abs_deadline [15:0] $end
+$var reg 16 s pq_eff_remaining_wcet [15:0] $end
+$var reg 4 t pq_enq_id [3:0] $end
+$var reg 16 u pq_enq_key [15:0] $end
+$var reg 1 ) pq_enqueue $end
+$var reg 1 ( pq_flush $end
+$var reg 32 v rsp_word [31:0] $end
+$var reg 2 w sched_mode [1:0] $end
+$var reg 32 x sq_enq_counter [31:0] $end
+$var reg 4 y sq_enq_id [3:0] $end
+$var reg 1 $ sq_enqueue $end
+$var reg 1 # sq_flush $end
+$var reg 32 z tick_count [31:0] $end
+$var reg 16 { tick_divider [15:0] $end
+$var reg 1 ! timer_enable $end
+$var reg 1 | tt_clear_all $end
+$var reg 4 } tt_rd_id [3:0] $end
+$var reg 16 ~ tt_wr_abs_deadline [15:0] $end
+$var reg 16 !" tt_wr_deadline [15:0] $end
+$var reg 1 "" tt_wr_en $end
+$var reg 4 #" tt_wr_id [3:0] $end
+$var reg 16 $" tt_wr_period [15:0] $end
+$var reg 1 %" tt_wr_preemptable $end
+$var reg 4 &" tt_wr_priority [3:0] $end
+$var reg 16 '" tt_wr_remaining_wcet [15:0] $end
+$var reg 3 (" tt_wr_status [2:0] $end
+$var reg 1 )" tt_wr_type $end
+$var reg 16 *" tt_wr_wcet [15:0] $end
+$scope module u_task_table $end
+$var wire 1 | clear_all $end
+$var wire 1 2 clk $end
+$var wire 1 +" rd_en $end
+$var wire 4 ," rd_id [3:0] $end
+$var wire 1 = rst_n $end
+$var wire 16 -" wr_abs_deadline [15:0] $end
+$var wire 16 ." wr_deadline [15:0] $end
+$var wire 1 "" wr_en $end
+$var wire 4 /" wr_id [3:0] $end
+$var wire 16 0" wr_period [15:0] $end
+$var wire 1 %" wr_preemptable $end
+$var wire 4 1" wr_priority [3:0] $end
+$var wire 16 2" wr_remaining_wcet [15:0] $end
+$var wire 3 3" wr_status [2:0] $end
+$var wire 1 )" wr_type $end
+$var wire 16 4" wr_wcet [15:0] $end
+$var parameter 32 5" ID_WIDTH $end
+$var parameter 32 6" NUM_TASKS $end
+$var reg 16 7" rd_abs_deadline [15:0] $end
+$var reg 16 8" rd_deadline [15:0] $end
+$var reg 16 9" rd_period [15:0] $end
+$var reg 1 Q rd_preemptable $end
+$var reg 4 :" rd_priority [3:0] $end
+$var reg 16 ;" rd_remaining_wcet [15:0] $end
+$var reg 3 <" rd_status [2:0] $end
+$var reg 1 M rd_type $end
+$var reg 16 =" rd_wcet [15:0] $end
+$var integer 32 >" i [31:0] $end
+$upscope $end
+$scope task prep_tt_write $end
+$upscope $end
+$upscope $end
+$scope task send_cmd $end
+$var reg 32 ?" w [31:0] $end
+$upscope $end
+$scope task send_word2 $end
+$var reg 32 @" w2 [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b10000 6"
+b100 5"
+b1001 i
+b1010 h
+b11 g
+b1000 f
+b111 e
+b1110 d
+b10 c
+b1011 b
+b1111 a
+b1101 `
+b0 _
+b110 ^
+b101 ]
+b100 \
+b1 [
+b1100 Z
+b10000 Y
+b10000 X
+b100 W
+$end
+#0
+$dumpvars
+bx @"
+bx ?"
+bx >"
+bx ="
+bx <"
+bx ;"
+bx :"
+bx 9"
+bx 8"
+bx 7"
+bx 4"
+bx 3"
+bx 2"
+bx 1"
+bx 0"
+bx /"
+bx ."
+bx -"
+bx ,"
+1+"
+bx *"
+x)"
+bx ("
+bx '"
+bx &"
+x%"
+bx $"
+bx #"
+x""
+bx !"
+bx ~
+bx }
+x|
+bx {
+bx z
+bx y
+bx x
+bx w
+bx v
+bx u
+bx t
+bx s
+bx r
+xq
+bx p
+bx o
+bx n
+bx m
+bx l
+bx k
+bx j
+b0 V
+b0 U
+bx T
+bx S
+bx R
+xQ
+bx P
+bx O
+bx N
+xM
+bx L
+b0 K
+b0 J
+b0 I
+b0 H
+b0 G
+b0 F
+b0 E
+b0 D
+0C
+0B
+b0 A
+b0 @
+b0 ?
+b0 >
+0=
+0<
+b0 ;
+b0 :
+b0 9
+08
+07
+06
+b0 5
+b0 4
+03
+02
+bx 1
+bx 0
+x/
+bx .
+x-
+x,
+bx +
+bx *
+x)
+x(
+bx '
+bx &
+bx %
+x$
+x#
+bx "
+x!
+$end
+#5000
+b0 s
+b0 r
+b0 O
+b0 ;"
+b0 T
+b0 7"
+b0 N
+b0 <"
+0Q
+0M
+b0 L
+b0 ="
+b0 S
+b0 8"
+b0 R
+b0 9"
+b0 P
+b0 :"
+b0 *
+b0 u
+b0 }
+b0 ,"
+b0 '"
+b0 2"
+b0 ~
+b0 -"
+b0 ("
+b0 3"
+0%"
+0)"
+b0 *"
+b0 4"
+b0 !"
+b0 ."
+b0 $"
+b0 0"
+b0 &"
+b0 1"
+b0 #"
+b0 /"
+1|
+0""
+b0 p
+b0 o
+b0 n
+0q
+b0 z
+b11111111 0
+b11111111 k
+b1111 1
+b1111 j
+1#
+0$
+1(
+0,
+0)
+0-
+b0 '
+b0 v
+b0 .
+b0 m
+1/
+0!
+b1100100 "
+b1100100 {
+b0 l
+b0 w
+b10000 >"
+12
+#10000
+02
+#15000
+b10000 >"
+12
+#20000
+02
+#25000
+b10000 >"
+12
+#30000
+02
+#35000
+0#
+0(
+0|
+b10000 >"
+1=
+12
+#40000
+02
+#45000
+b10 }
+b10 ,"
+b110 V
+b10 U
+13
+b1100010101010000001001000110100 4
+b1100010101010000001001000110100 E
+b1100010101010000001001000110100 ?"
+12
+#50000
+02
+#55000
+b1100010101010000001001000110100 p
+b10 o
+b110 n
+1q
+1-
+12
+#60000
+02
+#65000
+1-
+12
+#70000
+16
+b10101011110011010000000011101111 5
+b10101011110011010000000011101111 F
+b10101011110011010000000011101111 @"
+03
+02
+#75000
+b1100000000000110 '
+b1100000000000110 v
+b11101111 '"
+b11101111 2"
+b1001000110100 ~
+b1001000110100 -"
+b1001000110100 !"
+b1001000110100 ."
+b11101111 *"
+b11101111 4"
+b1010101111001101 $"
+b1010101111001101 0"
+1)"
+b1010 &"
+b1010 1"
+b10 #"
+b10 /"
+1""
+0q
+0-
+12
+#80000
+02
+#85000
+b1010 *
+b1010 u
+b11101111 s
+b1001000110100 r
+b11101111 O
+b11101111 ;"
+b1001000110100 T
+b1001000110100 7"
+1M
+b11101111 L
+b11101111 ="
+b1001000110100 S
+b1001000110100 8"
+b1010101111001101 R
+b1010101111001101 9"
+b1010 P
+b1010 :"
+0""
+12
+#90000
+06
+02
+#95000
+12
+#100000
+02
+#105000
+b1110010000000000000000000000000 p
+1q
+1-
+b111 V
+13
+b1110010000000000000000000000000 4
+b1110010000000000000000000000000 E
+b1110010000000000000000000000000 ?"
+12
+#110000
+02
+#115000
+b111 n
+1-
+12
+#120000
+02
+#125000
+1-
+12
+#130000
+16
+b10010001101000101011001111000 5
+b10010001101000101011001111000 F
+b10010001101000101011001111000 @"
+03
+02
+#135000
+b1100000000000111 '
+b1100000000000111 v
+b100 ("
+b100 3"
+1""
+1$
+b10010001101000101011001111000 &
+b10010001101000101011001111000 x
+b10 %
+b10 y
+0q
+0-
+12
+#140000
+02
+#145000
+b100 N
+b100 <"
+0$
+0""
+b10 ?
+b10010001101000101011001111000 >
+b1 D
+12
+#150000
+06
+02
+#155000
+12
+#160000
+02
+#165000
+12
+#170000
+02
+#175000
+12
+#180000
+02
+#185000
+12
