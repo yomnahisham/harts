@@ -30,3 +30,7 @@ dist/
 
 Thumbs.db
 .directory
+
+# simulation outputs
+*.vcd
+verif/sim/*.vcd

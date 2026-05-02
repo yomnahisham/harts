@@ -1,5 +1,5 @@
 $date
-	Sat May  2 14:58:38 2026
+	Sat May  2 17:33:29 2026
 $end
 $version
 	Icarus Verilog
@@ -61,6 +61,7 @@ $var wire 5 J sq_depth [4:0] $end
 $var wire 4 K sq_wake_id [3:0] $end
 $var wire 1 B sq_wake_valid $end
 $var wire 1 C tick_pulse $end
+$var wire 1 C tick_pulse_tt_rd $end
 $var wire 16 L tt_rd_wcet [15:0] $end
 $var wire 1 M tt_rd_type $end
 $var wire 3 N tt_rd_status [2:0] $end
