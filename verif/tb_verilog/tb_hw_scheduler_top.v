@@ -110,17 +110,14 @@ module tb_hw_scheduler_top;
             $finish(1);
         end
 
-        // ACTIVATE
+        // ACTIVATE (empty PQ: c00c or dead_0003)
         spi_send32(32'hc100_0000);
         repeat (3) @(posedge clk);
-        if (dut.u_ctrl.rsp_word !== 32'h0000_c00c) begin
-            $display("fail ACTIVATE response (pq empty → dead_0003 also ok, got %h)",
+        if (dut.u_ctrl.rsp_word !== 32'h0000_c00c &&
+            dut.u_ctrl.rsp_word !== 32'hdead_0003) begin
+            $display("fail ACTIVATE response: expected c00c or dead_0003, got %h",
                      dut.u_ctrl.rsp_word);
-            // ACTIVATE with empty PQ returns dead_0003, not c00c — accept both
-            if (dut.u_ctrl.rsp_word !== 32'hdead_0003) begin
-                $display("fail ACTIVATE unexpected response");
-                $finish(1);
-            end
+            $finish(1);
         end
 
         // SLEEP (two-word)

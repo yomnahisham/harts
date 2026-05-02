@@ -30,40 +30,8 @@ module hw_scheduler_top (
     reg tick_pulse_r;
     wire [15:0] tick_counter;
 
-    // 2-FF synchronizer from pad rst_n, then parallel second-stage flops (same value, lower fanout per net)
-    reg sync_rst_d1;
-    reg sync_rst_d2a;
-    reg sync_rst_d2b;
-    reg sync_rst_d2c;
-    reg sync_rst_d2d_ctrl;
-    reg sync_rst_d2d_scan;
-
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
-            sync_rst_d1 <= 1'b0;
-            sync_rst_d2a <= 1'b0;
-            sync_rst_d2b <= 1'b0;
-            sync_rst_d2c <= 1'b0;
-            sync_rst_d2d_ctrl <= 1'b0;
-            sync_rst_d2d_scan <= 1'b0;
-        end else begin
-            sync_rst_d1 <= 1'b1;
-            sync_rst_d2a <= sync_rst_d1;
-            sync_rst_d2b <= sync_rst_d1;
-            sync_rst_d2c <= sync_rst_d1;
-            sync_rst_d2d_ctrl <= sync_rst_d1;
-            sync_rst_d2d_scan <= sync_rst_d1;
-        end
-    end
-
-    wire rst_spi_tm_n = sync_rst_d2a; // SPI, timer, tick_pulse_r
-    wire rst_pq_n = sync_rst_d2b; // priority_queue
-    wire rst_sq_irq_n = sync_rst_d2c; // sleep_queue, interrupt_ctrl
-    wire rst_ctrl_n = sync_rst_d2d_ctrl; // control_unit
-    wire rst_glue_scan_n = sync_rst_d2d_scan; // SPI→ctrl glue, scan_chain
-
     always @(posedge clk) begin
-        if (!rst_spi_tm_n)
+        if (!rst_n)
             tick_pulse_r <= 1'b0;
         else
             tick_pulse_r <= tick_pulse;
@@ -84,7 +52,7 @@ module hw_scheduler_top (
     reg [15:0] pq_enq_key_r;
 
     always @(posedge clk) begin
-        if (!rst_pq_n) begin
+        if (!rst_n) begin
             pq_enqueue_r <= 1'b0;
             pq_enq_id_r <= 4'd0;
             pq_enq_key_r <= 16'd0;
@@ -112,7 +80,7 @@ module hw_scheduler_top (
 
     spi_slave_if u_spi (
         .clk(clk),
-        .rst_n(rst_spi_tm_n),
+        .rst_n(rst_n),
         .sclk(sclk),
         .cs_n(cs_n),
         .mosi(mosi),
@@ -123,7 +91,7 @@ module hw_scheduler_top (
     );
 
     always @(posedge clk) begin
-        if (!rst_glue_scan_n) begin
+        if (!rst_n) begin
             waiting_word2 <= 1'b0;
             ctrl_cmd_valid <= 1'b0;
             ctrl_cmd_word <= 32'd0;
@@ -151,7 +119,7 @@ module hw_scheduler_top (
 
     timer u_timer (
         .clk(clk),
-        .rst_n(rst_spi_tm_n),
+        .rst_n(rst_n),
         .enable(timer_enable),
         .tick_divider(tick_divider),
         .tick_pulse(tick_pulse),
@@ -161,7 +129,7 @@ module hw_scheduler_top (
 
     priority_queue #(.DEPTH(6)) u_pq (
         .clk(clk),
-        .rst_n(rst_pq_n),
+        .rst_n(rst_n),
         .enqueue(pq_enqueue_r),
         .dequeue(pq_dequeue),
         .flush(pq_flush),
@@ -175,7 +143,7 @@ module hw_scheduler_top (
 
     sleep_queue u_sq (
         .clk(clk),
-        .rst_n(rst_sq_irq_n),
+        .rst_n(rst_n),
         .flush(sq_flush),
         .enqueue(sq_enqueue),
         .tick(tick_pulse_r),
@@ -188,7 +156,7 @@ module hw_scheduler_top (
 
     interrupt_ctrl u_irq_ctrl (
         .clk(clk),
-        .rst_n(rst_sq_irq_n),
+        .rst_n(rst_n),
         .ext_irq(ext_irq),
         .fast_mask(fast_mask_r),
         .irq_pending(irq_pending),
@@ -198,7 +166,7 @@ module hw_scheduler_top (
 
     control_unit u_ctrl (
         .clk(clk),
-        .rst_n(rst_ctrl_n),
+        .rst_n(rst_n),
         .cmd_valid(ctrl_cmd_valid),
         .cmd_word(ctrl_cmd_word),
         .cmd_word2_valid(ctrl_cmd_word2_valid),
@@ -245,7 +213,7 @@ module hw_scheduler_top (
 
     scan_chain #(.WIDTH(256)) u_scan (
         .clk(clk),
-        .rst_n(rst_glue_scan_n),
+        .rst_n(rst_n),
         .scan_en(scan_en),
         .scan_in(scan_in),
         .parallel_in(scan_parallel),
