@@ -1,4 +1,4 @@
-# HARTS: hardware real-time scheduler
+# HARTS: Hardware Real-Time Scheduler
 
 Open-source RTL for a real-time scheduling coprocessor in SkyWater SKY130 high-density standard cells. The block implements configurable scheduling (priority, rate monotonic, earliest-deadline-first, and laxity-based modes), a 16-task task table, ready and sleep queues, a tick timer, and host interrupt signaling. A host talks to the scheduler over UART using a bridge that decodes serial frames into AMBA APB3 register accesses.
 
