@@ -1,6 +1,4 @@
 // hw_scheduler_top - HARTS scheduler wrapper
-// Clock: 50 ns (20 MHz) in config + SDC. Reset: parallel second-stage flops from
-// sync_rst_d1 split fanout so rst_* nets avoid dfrtp recovery on one mega-driver.
 //TODO: rename module to harts
 module hw_scheduler_top (
     input wire clk,
@@ -32,9 +30,7 @@ module hw_scheduler_top (
     reg tick_pulse_r;
     wire [15:0] tick_counter;
 
-    // 2-FF synchronizer from pad rst_n, then parallel second-stage flops (same value,
-    // lower fanout per net). control_unit vs scan_chain+glue are split (both still
-    // fed from sync_rst_d1) to cut recovery on the heaviest combined rst tree.
+    // 2-FF synchronizer from pad rst_n, then parallel second-stage flops (same value, lower fanout per net)
     reg sync_rst_d1;
     reg sync_rst_d2a;
     reg sync_rst_d2b;
@@ -44,26 +40,26 @@ module hw_scheduler_top (
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            sync_rst_d1       <= 1'b0;
-            sync_rst_d2a      <= 1'b0;
-            sync_rst_d2b      <= 1'b0;
-            sync_rst_d2c      <= 1'b0;
+            sync_rst_d1 <= 1'b0;
+            sync_rst_d2a <= 1'b0;
+            sync_rst_d2b <= 1'b0;
+            sync_rst_d2c <= 1'b0;
             sync_rst_d2d_ctrl <= 1'b0;
             sync_rst_d2d_scan <= 1'b0;
         end else begin
-            sync_rst_d1       <= 1'b1;
-            sync_rst_d2a      <= sync_rst_d1;
-            sync_rst_d2b      <= sync_rst_d1;
-            sync_rst_d2c      <= sync_rst_d1;
+            sync_rst_d1 <= 1'b1;
+            sync_rst_d2a <= sync_rst_d1;
+            sync_rst_d2b <= sync_rst_d1;
+            sync_rst_d2c <= sync_rst_d1;
             sync_rst_d2d_ctrl <= sync_rst_d1;
             sync_rst_d2d_scan <= sync_rst_d1;
         end
     end
 
-    wire rst_spi_tm_n   = sync_rst_d2a;       // SPI, timer, tick_pulse_r
-    wire rst_pq_n       = sync_rst_d2b;       // priority_queue
-    wire rst_sq_irq_n   = sync_rst_d2c;       // sleep_queue, interrupt_ctrl
-    wire rst_ctrl_n     = sync_rst_d2d_ctrl;  // control_unit
+    wire rst_spi_tm_n = sync_rst_d2a; // SPI, timer, tick_pulse_r
+    wire rst_pq_n = sync_rst_d2b; // priority_queue
+    wire rst_sq_irq_n = sync_rst_d2c; // sleep_queue, interrupt_ctrl
+    wire rst_ctrl_n = sync_rst_d2d_ctrl; // control_unit
     wire rst_glue_scan_n = sync_rst_d2d_scan; // SPI→ctrl glue, scan_chain
 
     always @(posedge clk) begin
@@ -83,23 +79,18 @@ module hw_scheduler_top (
     wire pq_head_valid;
     wire [4:0] pq_depth;
 
-    // Pipeline stage: isolate the combinational pq_enq_key path (task-table read +
-    // 16-bit adder) from the PQ ripple chain. Without this register the critical
-    // path is: ctrl_unit flops → key adder → 16-cell comparator ripple → pq_cell
-    // flops, which is ~120 ns. With the register the adder lands in one cycle and
-    // the ripple starts from a flop in the next, cutting the path roughly in half.
-    reg        pq_enqueue_r;
-    reg [3:0]  pq_enq_id_r;
+    reg pq_enqueue_r;
+    reg [3:0] pq_enq_id_r;
     reg [15:0] pq_enq_key_r;
 
     always @(posedge clk) begin
         if (!rst_pq_n) begin
             pq_enqueue_r <= 1'b0;
-            pq_enq_id_r  <= 4'd0;
+            pq_enq_id_r <= 4'd0;
             pq_enq_key_r <= 16'd0;
         end else begin
             pq_enqueue_r <= pq_enqueue;
-            pq_enq_id_r  <= pq_enq_id;
+            pq_enq_id_r <= pq_enq_id;
             pq_enq_key_r <= pq_enq_key;
         end
     end
@@ -167,10 +158,7 @@ module hw_scheduler_top (
         .tick_counter(tick_counter)
     );
 
-    // DEPTH=8: halves the ripple chain vs DEPTH=16. With the pipeline register
-    // above the critical path is [pq_enq_key_r flop] → 8-cell ripple → [pq_cell
-    // flops], estimated ~40-56 ns in sky130 HD — fits inside the 50 ns budget.
-    // If timing still fails at slow corner, lower DEPTH further (6 is safe).
+
     priority_queue #(.DEPTH(6)) u_pq (
         .clk(clk),
         .rst_n(rst_pq_n),
