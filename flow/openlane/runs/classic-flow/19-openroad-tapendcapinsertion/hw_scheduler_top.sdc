@@ -5,7 +5,7 @@ current_design hw_scheduler_top
 ###############################################################################
 # Timing Constraints
 ###############################################################################
-create_clock -name clk -period 100.0000 [get_ports {clk}]
+create_clock -name clk -period 25.0000 [get_ports {clk}]
 set_clock_uncertainty 0.1200 clk
 set_clock_latency -source 0.0000 [get_clocks {clk}]
 set_input_delay 0.0000 -clock [get_clocks {clk}] -min -add_delay [get_ports {cs_n}]
@@ -29,7 +29,7 @@ set_input_delay 3.9900 -clock [get_clocks {clk}] -max -add_delay [get_ports {ext
 set_input_delay 0.0000 -clock [get_clocks {clk}] -min -add_delay [get_ports {mosi}]
 set_input_delay 4.7100 -clock [get_clocks {clk}] -max -add_delay [get_ports {mosi}]
 set_input_delay 0.0000 -clock [get_clocks {clk}] -min -add_delay [get_ports {rst_n}]
-set_input_delay 50.0000 -clock [get_clocks {clk}] -max -add_delay [get_ports {rst_n}]
+set_input_delay 12.5000 -clock [get_clocks {clk}] -max -add_delay [get_ports {rst_n}]
 set_input_delay 0.0000 -clock [get_clocks {clk}] -min -add_delay [get_ports {scan_en}]
 set_input_delay 3.8400 -clock [get_clocks {clk}] -max -add_delay [get_ports {scan_en}]
 set_input_delay 0.0000 -clock [get_clocks {clk}] -min -add_delay [get_ports {scan_in}]

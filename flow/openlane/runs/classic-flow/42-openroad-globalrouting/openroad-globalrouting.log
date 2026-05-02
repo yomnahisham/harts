@@ -1,0 +1,77 @@
+Reading timing models for corner nom_ss_100C_1v60…
+Reading timing library for the 'nom_ss_100C_1v60' corner at '/Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib'…
+Reading OpenROAD database at '/Users/yomna/Documents/projects/harts/flow/openlane/runs/classic-flow/39-openroad-resizertimingpostcts/hw_scheduler_top.odb'…
+Reading design constraints file at '/Users/yomna/Documents/projects/harts/flow/openlane/sdc/hw_scheduler_top_pnr.sdc'…
+[INFO]: Creating clock {clk} for port clk with period: 25
+[INFO]: Setting clock uncertainty to: 0.12
+[INFO]: Source clock latency 0 (macro boundary)
+[INFO] Setting signal min routing layer to: met1 and clock min routing layer to met1. 
+[INFO] Setting signal max routing layer to: met4 and clock max routing layer to met4. 
++ global_route -congestion_iterations 50 -verbose
+[INFO GRT-0020] Min routing layer: met1
+[INFO GRT-0021] Max routing layer: met4
+[INFO GRT-0022] Global adjustment: 30%
+[INFO GRT-0023] Grid origin: (0, 0)
+[INFO GRT-0088] Layer li1     Track-Pitch = 0.4600  line-2-Via Pitch: 0.3400
+[INFO GRT-0088] Layer met1    Track-Pitch = 0.3400  line-2-Via Pitch: 0.3400
+[INFO GRT-0088] Layer met2    Track-Pitch = 0.4600  line-2-Via Pitch: 0.3500
+[INFO GRT-0088] Layer met3    Track-Pitch = 0.6800  line-2-Via Pitch: 0.6150
+[INFO GRT-0088] Layer met4    Track-Pitch = 0.9200  line-2-Via Pitch: 0.6150
+[INFO GRT-0003] Macros: 0
+[INFO GRT-0004] Blockages: 40899
+[INFO GRT-0019] Found 358 clock nets.
+[INFO GRT-0001] Minimum degree: 2
+[INFO GRT-0002] Maximum degree: 18
+
+[INFO GRT-0053] Routing resources analysis:
+          Routing      Original      Derated      Resource
+Layer     Direction    Resources     Resources    Reduction (%)
+---------------------------------------------------------------
+li1        Vertical            0             0          0.00%
+met1       Horizontal     202972        135068          33.45%
+met2       Vertical       210889        140196          33.52%
+met3       Horizontal     145307         99755          31.35%
+met4       Vertical       105147         63136          39.95%
+---------------------------------------------------------------
+
+[INFO GRT-0101] Running extra iterations to remove overflow.
+[INFO GRT-0102] Start extra iteration 1/50
+[INFO GRT-0102] Start extra iteration 2/50
+[INFO GRT-0102] Start extra iteration 3/50
+[INFO GRT-0197] Via related to pin nodes: 145467
+[INFO GRT-0198] Via related Steiner nodes: 4196
+[INFO GRT-0199] Via filling finished.
+[INFO GRT-0111] Final number of vias: 187969
+[INFO GRT-0112] Final usage 3D: 737695
+
+[INFO GRT-0096] Final congestion report:
+Layer         Resource        Demand        Usage (%)    Max H / Max V / Total Overflow
+---------------------------------------------------------------------------------------
+li1                  0             0            0.00%             0 /  0 /  0
+met1            135068         68831           50.96%             0 /  0 /  0
+met2            140196         72757           51.90%             0 /  0 /  0
+met3             99755         18398           18.44%             0 /  0 /  0
+met4             63136         13802           21.86%             0 /  0 /  0
+---------------------------------------------------------------------------------------
+Total           438155        173788           39.66%             0 /  0 /  0
+
+[INFO GRT-0018] Total wirelength: 1650624 um
+[INFO GRT-0014] Routed nets: 26655
+[INFO GRT-0303] Global routing runtime = 00:00:01
+Setting global connections for newly added cells…
+[INFO] Setting global connections...
+[INFO ODB-0403] 0 connections made, 0 conflicts skipped.
+Updating metrics…
+Cell type report:                       Count       Area
+  Fill cell                               602    2259.67
+  Tap cell                               9544   11941.45
+  Buffer                                 2847   13510.46
+  Clock buffer                            541    7148.11
+  Timing Repair Buffer                   1968   16901.21
+  Inverter                               2201    8992.37
+  Clock inverter                           95    1226.18
+  Sequential cell                        2860   74503.96
+  Multi-Input combinational cell        16407  139204.76
+  Total                                 37065  275688.16
+Writing OpenROAD database to '/Users/yomna/Documents/projects/harts/flow/openlane/runs/classic-flow/42-openroad-globalrouting/hw_scheduler_top.odb'…
+Writing layout to '/Users/yomna/Documents/projects/harts/flow/openlane/runs/classic-flow/42-openroad-globalrouting/hw_scheduler_top.def'…

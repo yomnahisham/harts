@@ -2,7 +2,7 @@
 # Block-level: clk is a top port; no chip-level route yet → no propagated clock,
 # no source latency (add at SoC integration). Keep CLK_PERIOD == config CLOCK_PERIOD.
 
-set CLK_PERIOD 100
+set CLK_PERIOD 25
 set clk_input clk
 
 create_clock [get_ports $clk_input] -name clk -period $CLK_PERIOD

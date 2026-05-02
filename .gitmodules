@@ -1,0 +1,3 @@
+[submodule "vendor/uart_apb_master"]
+	path = vendor/uart_apb_master
+	url = https://github.com/shalan/uart_apb_master.git

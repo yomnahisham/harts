@@ -71,9 +71,5 @@
 
 // lint_off -rule UNUSEDSIGNAL -file "*/Users/yomna/Documents/projects/harts/rtl/priority_queue.v" -match "Signal is not used: 'dbg_cell_key'*"
 
-// lint_off -rule SYNCASYNCNET -file "*/Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v" -match "Signal flopped as both synchronous and async: 'hw_scheduler_top.sync_rst_d2a'*"
-
-// lint_off -rule SYNCASYNCNET -file "*/Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v" -match "Signal flopped as both synchronous and async: 'hw_scheduler_top.sync_rst_d2b'*"
-
-// lint_off -rule SYNCASYNCNET -file "*/Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v" -match "Signal flopped as both synchronous and async: 'hw_scheduler_top.sync_rst_d2d_scan'*"
+// lint_off -rule SYNCASYNCNET -file "*/Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v" -match "Signal flopped as both synchronous and async: 'rst_n'*"
 

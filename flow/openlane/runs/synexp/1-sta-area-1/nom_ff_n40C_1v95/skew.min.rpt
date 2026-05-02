@@ -5,8 +5,8 @@ Clock Skew (Hold)
 ======================= nom_ff_n40C_1v95 Corner ===================================
 
 Clock clk
-0.000000 source latency _23869_/CLK ^
-0.000000 target latency _23869_/CLK ^
+0.000000 source latency _23914_/CLK ^
+0.000000 target latency _23914_/CLK ^
 -0.120000 clock uncertainty
 0.000000 CRPR
 --------------

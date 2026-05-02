@@ -1,5 +1,6 @@
 {
   "DESIGN_NAME": "hw_scheduler_top",
+  "PDN_MULTILAYER": false,
   "PNR_SDC_FILE": "dir::sdc/hw_scheduler_top_pnr.sdc",
   "SIGNOFF_SDC_FILE": "dir::sdc/hw_scheduler_top_signoff.sdc",
   "VERILOG_FILES": [
@@ -15,9 +16,12 @@
     "dir::../../rtl/scan_chain.v"
   ],
   "CLOCK_PORT": "clk",
-  "CLOCK_PERIOD": 100,
-  "SYNTH_STRATEGY": "DELAY 3",
+  "CLOCK_PERIOD": 25,
+  "SYNTH_STRATEGY": "AREA 3",
   "RT_MAX_LAYER": "met4",
+  "GRT_ANTENNA_REPAIR_ITERS": 10,
+  "GRT_ANTENNA_REPAIR_MARGIN": 15,
+  "DIODE_ON_PORTS": "both",
   "FP_CORE_UTIL": 35,
   "PL_TARGET_DENSITY": 0.55,
   "RUN_CTS": true,
@@ -33,7 +37,7 @@
       "via": "None"
     }
   },
-  "CTS_APPLY_NDR": "full",
+  "CTS_APPLY_NDR": "half",
   "DRT_ASSIGN_NDR": {
     "clk": "clkndr"
   }

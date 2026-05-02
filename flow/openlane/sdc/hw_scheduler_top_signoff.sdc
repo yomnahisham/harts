@@ -1,7 +1,7 @@
 # hw_scheduler_top — Signoff-oriented SDC (sky130)
 # Block-level defaults; tighten latencies / mins when closing chip-level timing.
 
-set CLK_PERIOD 100
+set CLK_PERIOD 25
 set clk_input clk
 
 create_clock [get_ports $clk_input] -name clk -period $CLK_PERIOD

@@ -1,21 +1,21 @@
 {
    "creator": "Yosys 0.62 (git sha1 7326bb7d6641500ecb285c291a54a662cb1e76cf, clang++ 21.1.2 -fPIC -O3)",
-   "invocation": "stat -json -liberty /Users/yomna/Documents/projects/harts/flow/openlane/runs/synexp/tmp/805a67ac260047e09db317fa64718403.lib ",
+   "invocation": "stat -json -liberty /Users/yomna/Documents/projects/harts/flow/openlane/runs/synexp/tmp/c96966c4cf7548e5a6fb1ce79a7afbab.lib ",
    "modules": {
       "\\hw_scheduler_top": {
-         "num_wires":         21942,
-         "num_wire_bits":     24647,
-         "num_pub_wires":     246,
-         "num_pub_wire_bits": 2951,
+         "num_wires":         21940,
+         "num_wire_bits":     24642,
+         "num_pub_wires":     244,
+         "num_pub_wire_bits": 2946,
          "num_ports":         11,
          "num_port_bits":     18,
          "num_memories":      0,
          "num_memory_bits":   0,
          "num_processes":     0,
-         "num_cells":         24574,
+         "num_cells":         24572,
          "num_submodules":       0,
-         "area":              74554.003200,
-         "sequential_area":    74554.003200,
+         "area":              74501.452800,
+         "sequential_area":    74501.452800,
          "num_cells_by_type": {
             "$_ANDNOT_": 6323,
             "$_AND_": 414,
@@ -27,26 +27,26 @@
             "$_OR_": 2698,
             "$_XNOR_": 73,
             "$_XOR_": 1437,
-            "sky130_fd_sc_hd__dfrtp_2": 2711,
+            "sky130_fd_sc_hd__dfrtp_2": 2709,
             "sky130_fd_sc_hd__dfstp_2": 22,
             "sky130_fd_sc_hd__dfxtp_2": 129
          }
       }
    },
       "design": {
-         "num_wires":         21942,
-         "num_wire_bits":     24647,
-         "num_pub_wires":     246,
-         "num_pub_wire_bits": 2951,
+         "num_wires":         21940,
+         "num_wire_bits":     24642,
+         "num_pub_wires":     244,
+         "num_pub_wire_bits": 2946,
          "num_ports":         11,
          "num_port_bits":     18,
          "num_memories":      0,
          "num_memory_bits":   0,
          "num_processes":     0,
-         "num_cells":         24574,
+         "num_cells":         24572,
          "num_submodules":       0,
-         "area":              74554.003200,
-         "sequential_area":    74554.003200,
+         "area":              74501.452800,
+         "sequential_area":    74501.452800,
          "num_cells_by_type": {
             "$_ANDNOT_": 6323,
             "$_AND_": 414,
@@ -58,7 +58,7 @@
             "$_OR_": 2698,
             "$_XNOR_": 73,
             "$_XOR_": 1437,
-            "sky130_fd_sc_hd__dfrtp_2": 2711,
+            "sky130_fd_sc_hd__dfrtp_2": 2709,
             "sky130_fd_sc_hd__dfstp_2": 22,
             "sky130_fd_sc_hd__dfxtp_2": 129
          }

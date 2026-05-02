@@ -5,13 +5,13 @@
         +----------Local Count, excluding submodules.
         |        +-Local Area, excluding submodules.
         |        | 
-    21942        - wires
-    24647        - wire bits
-      246        - public wires
-     2951        - public wire bits
+    21940        - wires
+    24642        - wire bits
+      244        - public wires
+     2946        - public wire bits
        11        - ports
        18        - port bits
-    24574 7.46E+04 cells
+    24572 7.45E+04 cells
      6323        -   $_ANDNOT_
       414        -   $_AND_
      7825        -   $_MUX_
@@ -22,7 +22,7 @@
      2698        -   $_OR_
        73        -   $_XNOR_
      1437        -   $_XOR_
-     2711 7.12E+04   sky130_fd_sc_hd__dfrtp_2
+     2709 7.12E+04   sky130_fd_sc_hd__dfrtp_2
        22  578.054   sky130_fd_sc_hd__dfstp_2
       129 2.74E+03   sky130_fd_sc_hd__dfxtp_2
 
@@ -37,6 +37,6 @@
    Area for cell type $_XNOR_ is unknown!
    Area for cell type $_XOR_ is unknown!
 
-   Chip area for module '\hw_scheduler_top': 74554.003200
-     of which used for sequential elements: 74554.003200 (100.00%)
+   Chip area for module '\hw_scheduler_top': 74501.452800
+     of which used for sequential elements: 74501.452800 (100.00%)
 

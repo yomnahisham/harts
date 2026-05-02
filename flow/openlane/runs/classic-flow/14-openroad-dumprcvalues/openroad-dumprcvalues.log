@@ -1,5 +1,5 @@
-Reading timing models for corner nom_tt_025C_1v80…
-Reading timing library for the 'nom_tt_025C_1v80' corner at '/Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib'…
+Reading timing models for corner nom_ss_100C_1v60…
+Reading timing library for the 'nom_ss_100C_1v60' corner at '/Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__ss_100C_1v60.lib'…
 Reading technology LEF file at '/Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef'…
 [INFO ODB-0227] LEF file: /Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef, created 14 layers, 25 vias
 Reading cell LEF file at '/Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_ef_sc_hd.lef'…
@@ -15,9 +15,9 @@ The NOWIREEXTENSIONATPIN statement will be ignored. See file /Users/yomna/.ciel/
 [INFO ODB-0127] Reading DEF file: /Users/yomna/Documents/projects/harts/flow/openlane/runs/classic-flow/13-openroad-floorplan/hw_scheduler_top.def
 [INFO ODB-0128] Design: hw_scheduler_top
 [INFO ODB-0130]     Created 18 pins.
-[INFO ODB-0131]     Created 15996 components and 136523 component-terminals.
-[INFO ODB-0132]     Created 2 special nets and 63984 connections.
-[INFO ODB-0133]     Created 16011 nets and 72538 connections.
+[INFO ODB-0131]     Created 24315 components and 180002 component-terminals.
+[INFO ODB-0132]     Created 2 special nets and 97260 connections.
+[INFO ODB-0133]     Created 24330 nets and 82742 connections.
 [INFO ODB-0134] Finished DEF file: /Users/yomna/Documents/projects/harts/flow/openlane/runs/classic-flow/13-openroad-floorplan/hw_scheduler_top.def
 %OL_CREATE_REPORT tlef_values.rpt
  time 1ns
@@ -76,7 +76,7 @@ via3                3.410000e-03
  power 1nW
  distance 1um
 == Resizer RC Values (After Set RC) ==
-=== Corner nom_tt_025C_1v80 ===
+=== Corner nom_ss_100C_1v60 ===
 ==== Estimation RC Values ====
 Name                Direction           Res/Unit Distance   Cap/Unit Distance   
 Signal              Avg                 4.402703e-04        8.148294e-05        
