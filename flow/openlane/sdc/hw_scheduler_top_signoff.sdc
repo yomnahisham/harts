@@ -24,40 +24,34 @@ puts "\[INFO\]: Source clock latency 0 (macro boundary)"
 
 set_input_transition 0.61 [get_ports $clk_input]
 
+# uart_rx / uart_tx are slow async pads (USB-serial, ≤115200 baud); the bridge
+# 16x oversamples uart_rx into the system clock domain so input timing is loose.
 set_input_delay -max 3.17 -clock [get_clocks {clk}] [get_ports {scan_in}]
 set_input_delay -max 3.74 -clock [get_clocks {clk}] [get_ports {scan_en}]
 set_input_delay -max 3.89 -clock [get_clocks {clk}] [get_ports {ext_irq[*]}]
-set_input_delay -max 4.13 -clock [get_clocks {clk}] [get_ports {sclk}]
-set_input_delay -max 4.61 -clock [get_clocks {clk}] [get_ports {mosi}]
-set_input_delay -max 4.74 -clock [get_clocks {clk}] [get_ports {cs_n}]
+set_input_delay -max 4.61 -clock [get_clocks {clk}] [get_ports {uart_rx}]
 
 set_input_delay -min 0.0 -clock [get_clocks {clk}] [get_ports {ext_irq[*]}]
-set_input_delay -min 0.0 -clock [get_clocks {clk}] [get_ports {mosi}]
+set_input_delay -min 0.0 -clock [get_clocks {clk}] [get_ports {uart_rx}]
 set_input_delay -min 0.0 -clock [get_clocks {clk}] [get_ports {scan_in}]
 set_input_delay -min 0.0 -clock [get_clocks {clk}] [get_ports {scan_en}]
-set_input_delay -min 0.0 -clock [get_clocks {clk}] [get_ports {cs_n}]
-set_input_delay -min 0.0 -clock [get_clocks {clk}] [get_ports {sclk}]
 
 set_input_delay -max [expr {$CLK_PERIOD * 0.5}] -clock [get_clocks {clk}] [get_ports {rst_n}]
 set_input_delay -min 0.0 -clock [get_clocks {clk}] [get_ports {rst_n}]
 
 set_input_transition -max 0.14  [get_ports {scan_en}]
-set_input_transition -max 0.15  [get_ports {sclk}]
-set_input_transition -max 0.17  [get_ports {cs_n}]
 set_input_transition -max 0.18  [get_ports {scan_in}]
-set_input_transition -max 0.84  [get_ports {mosi}]
+set_input_transition -max 0.84  [get_ports {uart_rx}]
 set_input_transition -max 0.92  [get_ports {ext_irq[*]}]
 set_input_transition -min 0.07  [get_ports {ext_irq[*]}]
-set_input_transition -min 0.07  [get_ports {mosi}]
-set_input_transition -min 0.09  [get_ports {cs_n}]
+set_input_transition -min 0.07  [get_ports {uart_rx}]
 set_input_transition -min 0.09  [get_ports {scan_in}]
 set_input_transition -min 0.09  [get_ports {scan_en}]
-set_input_transition -min 0.15  [get_ports {sclk}]
 
-set_output_delay -max 3.62 -clock [get_clocks {clk}] [get_ports {miso}]
+set_output_delay -max 3.62 -clock [get_clocks {clk}] [get_ports {uart_tx}]
 set_output_delay -max 8.41 -clock [get_clocks {clk}] [get_ports {irq_n}]
 set_output_delay -max 3.62 -clock [get_clocks {clk}] [get_ports {scan_out}]
-set_output_delay -min 0.0 -clock [get_clocks {clk}] [get_ports {miso}]
+set_output_delay -min 0.0 -clock [get_clocks {clk}] [get_ports {uart_tx}]
 set_output_delay -min 0.0 -clock [get_clocks {clk}] [get_ports {irq_n}]
 set_output_delay -min 0.0 -clock [get_clocks {clk}] [get_ports {scan_out}]
 

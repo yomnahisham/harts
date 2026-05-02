@@ -51,7 +51,7 @@ module tb_priority_queue;
                     $display("fail valid packing broken at %0d", i);
                     $finish(1);
                 end
-                key_i    = dut.dbg_cell_key[16*i     +: 16];
+                key_i = dut.dbg_cell_key[16*i +: 16];
                 key_next = dut.dbg_cell_key[16*(i+1) +: 16];
                 if (key_i < key_next) begin
                     $display("fail key order broken at %0d: key[%0d]=%0d < key[%0d]=%0d",

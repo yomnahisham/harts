@@ -1,28 +1,34 @@
 // hw_scheduler_top - HARTS scheduler wrapper
-//TODO: rename module to harts
-module hw_scheduler_top (
+// TODO: rename module to harts
+module hw_scheduler_top #(
+    // clk_freq / (baud_rate * 16). ~115200 at 40 MHz OpenLane clock: 40e6/(115200*16) ≈ 22.
+    parameter UART_DIVISOR = 16'd22
+)(
     input wire clk,
     input wire rst_n,
-    input wire sclk,
-    input wire cs_n,
-    input wire mosi,
-    output wire miso,
+    input wire uart_rx,
+    output wire uart_tx,
     input wire [7:0] ext_irq,
     output wire irq_n,
     input wire scan_en,
     input wire scan_in,
     output wire scan_out
 );
+    wire [31:0] apb_paddr;
+    wire apb_psel;
+    wire apb_penable;
+    wire apb_pwrite;
+    wire [31:0] apb_pwdata;
+    wire [31:0] apb_prdata;
+    wire apb_pready;
+    wire apb_pslverr;
+    wire bridge_locked;
+
     wire cmd_valid;
     wire [31:0] cmd_word;
     wire cmd_word2_valid;
     wire [31:0] cmd_word2;
     wire [31:0] rsp_word;
-    reg waiting_word2;
-    reg ctrl_cmd_valid;
-    reg [31:0] ctrl_cmd_word;
-    reg ctrl_cmd_word2_valid;
-    reg [31:0] ctrl_cmd_word2;
 
     wire timer_enable;
     wire [15:0] tick_divider;
@@ -78,44 +84,43 @@ module hw_scheduler_top (
     wire [3:0] current_task;
     wire [7:0] fast_mask_r;
 
-    spi_slave_if u_spi (
+    uart_apb_master #(
+        .DEFAULT_DIVISOR(UART_DIVISOR)
+    ) u_uart_apb (
         .clk(clk),
         .rst_n(rst_n),
-        .sclk(sclk),
-        .cs_n(cs_n),
-        .mosi(mosi),
-        .miso(miso),
-        .cmd_valid(cmd_valid),
-        .cmd_word(cmd_word),
-        .rsp_word(rsp_word)
+        .uart_rx(uart_rx),
+        .uart_tx(uart_tx),
+        .PADDR(apb_paddr),
+        .PSEL(apb_psel),
+        .PENABLE(apb_penable),
+        .PWRITE(apb_pwrite),
+        .PWDATA(apb_pwdata),
+        .PRDATA(apb_prdata),
+        .PREADY(apb_pready),
+        .PSLVERR(apb_pslverr),
+        .locked(bridge_locked)
     );
 
-    always @(posedge clk) begin
-        if (!rst_n) begin
-            waiting_word2 <= 1'b0;
-            ctrl_cmd_valid <= 1'b0;
-            ctrl_cmd_word <= 32'd0;
-            ctrl_cmd_word2_valid <= 1'b0;
-            ctrl_cmd_word2 <= 32'd0;
-        end else begin
-            ctrl_cmd_valid <= 1'b0;
-            ctrl_cmd_word2_valid <= 1'b0;
-
-            if (cmd_valid) begin
-                if (waiting_word2) begin
-                    ctrl_cmd_word2_valid <= 1'b1;
-                    ctrl_cmd_word2 <= cmd_word;
-                    waiting_word2 <= 1'b0;
-                end else begin
-                    ctrl_cmd_valid <= 1'b1;
-                    ctrl_cmd_word <= cmd_word;
-                    if (cmd_word[31:28] == 4'h4 || cmd_word[31:28] == 4'h6 || cmd_word[31:28] == 4'h7) begin
-                        waiting_word2 <= 1'b1;
-                    end
-                end
-            end
-        end
-    end
+    harts_apb_slave u_apb_slave (
+        .clk(clk),
+        .rst_n(rst_n),
+        .PADDR(apb_paddr),
+        .PSEL(apb_psel),
+        .PENABLE(apb_penable),
+        .PWRITE(apb_pwrite),
+        .PWDATA(apb_pwdata),
+        .PRDATA(apb_prdata),
+        .PREADY(apb_pready),
+        .PSLVERR(apb_pslverr),
+        .cmd_valid(cmd_valid),
+        .cmd_word(cmd_word),
+        .cmd_word2_valid(cmd_word2_valid),
+        .cmd_word2(cmd_word2),
+        .rsp_word(rsp_word),
+        .irq_n(irq_n),
+        .irq_reason(irq_reason)
+    );
 
     timer u_timer (
         .clk(clk),
@@ -125,7 +130,6 @@ module hw_scheduler_top (
         .tick_pulse(tick_pulse),
         .tick_counter(tick_counter)
     );
-
 
     priority_queue #(.DEPTH(6)) u_pq (
         .clk(clk),
@@ -167,10 +171,10 @@ module hw_scheduler_top (
     control_unit u_ctrl (
         .clk(clk),
         .rst_n(rst_n),
-        .cmd_valid(ctrl_cmd_valid),
-        .cmd_word(ctrl_cmd_word),
-        .cmd_word2_valid(ctrl_cmd_word2_valid),
-        .cmd_word2(ctrl_cmd_word2),
+        .cmd_valid(cmd_valid),
+        .cmd_word(cmd_word),
+        .cmd_word2_valid(cmd_word2_valid),
+        .cmd_word2(cmd_word2),
         .rsp_word(rsp_word),
         .need_word2(),
         .tick_pulse(tick_pulse_r),

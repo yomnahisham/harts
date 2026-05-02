@@ -128,8 +128,8 @@ module tb_sleep_queue;
         begin : multi_expiry
             integer me_wakes;
             reg [3:0] me_first, me_second;
-            me_wakes  = 0;
-            me_first  = 0;
+            me_wakes = 0;
+            me_first = 0;
             me_second = 0;
 
             flush = 1; @(posedge clk); flush = 0; @(posedge clk);

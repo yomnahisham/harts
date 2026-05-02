@@ -1,6 +1,6 @@
 # HARTS: Hardware Adaptive Real-Time Scheduler
 
-Hardware scheduler coprocessor for deterministic real-time task management. 
+Hardware scheduler coprocessor for deterministic real-time task management.
 
 ## Overview
 

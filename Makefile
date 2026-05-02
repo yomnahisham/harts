@@ -1,9 +1,24 @@
 IVERILOG ?= iverilog
 VVP ?= vvp
 
-.PHONY: test-verilog test-pq test-sq test-tt test-timer test-top test-ctrl test-phase1 test-cocotb test-vcd
+# RTL files for the full chip top (control_unit + queues + timer + scan +
+# UART-to-APB bridge + APB slave wrapper). The bridge RTL is vendored
+# from shalan/uart_apb_master under vendor/.
+RTL_TOP_FILES := \
+	rtl/hw_scheduler_top.v rtl/control_unit.v rtl/harts_apb_slave.v \
+	rtl/priority_queue.v rtl/pq_cell.v rtl/sleep_queue.v rtl/timer.v \
+	rtl/interrupt_ctrl.v rtl/scan_chain.v rtl/task_table.v \
+	vendor/uart_apb_master/rtl/uart_apb_master.v \
+	vendor/uart_apb_master/rtl/baud_gen.v \
+	vendor/uart_apb_master/rtl/uart_rx.v \
+	vendor/uart_apb_master/rtl/uart_tx.v \
+	vendor/uart_apb_master/rtl/cmd_parser.v \
+	vendor/uart_apb_master/rtl/resp_builder.v \
+	vendor/uart_apb_master/rtl/apb_master.v
 
-test-verilog: test-pq test-sq test-tt test-timer test-top test-ctrl test-phase1
+.PHONY: test-verilog test-pq test-sq test-tt test-timer test-top test-top-final test-ctrl test-phase1 test-bridge test-cocotb test-vcd
+
+test-verilog: test-pq test-sq test-tt test-timer test-top test-top-final test-ctrl test-phase1 test-bridge
 
 test-pq:
 	$(IVERILOG) -g2012 -o verif/sim/pq verif/tb_verilog/tb_priority_queue.v rtl/priority_queue.v rtl/pq_cell.v
@@ -22,11 +37,16 @@ test-timer:
 	$(VVP) verif/sim/tm
 
 test-top:
-	$(IVERILOG) -g2012 -o verif/sim/top_tb verif/tb_verilog/tb_hw_scheduler_top.v \
-		rtl/hw_scheduler_top.v rtl/control_unit.v rtl/spi_slave_if.v \
-		rtl/priority_queue.v rtl/pq_cell.v rtl/sleep_queue.v rtl/timer.v \
-		rtl/interrupt_ctrl.v rtl/scan_chain.v rtl/task_table.v
+	$(IVERILOG) -g2012 -o verif/sim/top_tb verif/tb_verilog/tb_hw_scheduler_top.v $(RTL_TOP_FILES)
 	$(VVP) verif/sim/top_tb
+
+test-top-final:
+	$(IVERILOG) -g2012 -o verif/sim/top_final_tb verif/tb_verilog/tb_hw_scheduler_top_final.v $(RTL_TOP_FILES)
+	$(VVP) verif/sim/top_final_tb
+
+test-bridge:
+	$(IVERILOG) -g2012 -o verif/sim/bridge verif/tb_verilog/tb_uart_apb_bridge.v $(RTL_TOP_FILES)
+	$(VVP) verif/sim/bridge
 
 test-ctrl:
 	$(IVERILOG) -g2012 -o verif/sim/ctrl verif/tb_verilog/tb_control_unit_assert.v \
@@ -47,5 +67,7 @@ test-vcd:
 	python3 scripts/vcd_sanity.py verif/sim/tb_priority_queue.vcd --mode pq
 	python3 scripts/vcd_sanity.py verif/sim/tb_sleep_queue.vcd --mode sq
 	python3 scripts/vcd_sanity.py verif/sim/tb_hw_scheduler_top.vcd --mode top
+	python3 scripts/vcd_sanity.py verif/sim/tb_hw_scheduler_top_final.vcd --mode top
 	python3 scripts/vcd_sanity.py verif/sim/tb_control_unit_assert.vcd --mode ctrl
 	python3 scripts/vcd_sanity.py verif/sim/tb_phase1_vcd.vcd --mode phase1
+	python3 scripts/vcd_sanity.py verif/sim/tb_uart_apb_bridge.vcd --mode top

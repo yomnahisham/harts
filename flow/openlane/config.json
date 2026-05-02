@@ -6,14 +6,21 @@
   "VERILOG_FILES": [
     "dir::../../rtl/hw_scheduler_top.v",
     "dir::../../rtl/control_unit.v",
-    "dir::../../rtl/spi_slave_if.v",
+    "dir::../../rtl/harts_apb_slave.v",
     "dir::../../rtl/priority_queue.v",
     "dir::../../rtl/pq_cell.v",
     "dir::../../rtl/sleep_queue.v",
     "dir::../../rtl/task_table.v",
     "dir::../../rtl/timer.v",
     "dir::../../rtl/interrupt_ctrl.v",
-    "dir::../../rtl/scan_chain.v"
+    "dir::../../rtl/scan_chain.v",
+    "dir::../../vendor/uart_apb_master/rtl/uart_apb_master.v",
+    "dir::../../vendor/uart_apb_master/rtl/baud_gen.v",
+    "dir::../../vendor/uart_apb_master/rtl/uart_rx.v",
+    "dir::../../vendor/uart_apb_master/rtl/uart_tx.v",
+    "dir::../../vendor/uart_apb_master/rtl/cmd_parser.v",
+    "dir::../../vendor/uart_apb_master/rtl/resp_builder.v",
+    "dir::../../vendor/uart_apb_master/rtl/apb_master.v"
   ],
   "CLOCK_PORT": "clk",
   "CLOCK_PERIOD": 25,
