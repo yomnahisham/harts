@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1777723123" />
+    <testcase name="test_tick_generation" classname="test_timer" file="/Users/yomna/Documents/projects/harts/tb/test_timer.py" lineno="1" time="0.0005991458892822266" sim_time_ns="140.0" ratio_time="233665.9610027855" />
+  </testsuite>
+</testsuites>

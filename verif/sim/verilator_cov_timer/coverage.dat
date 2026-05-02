@@ -1,0 +1,26 @@
+# SystemC::Coverage-3
+C 'frtl/timer.vl10n9tlinepagev_line/timeroelsifS10-12htb_timer.dut' 2
+C 'frtl/timer.vl13n18tlinepagev_line/timeroifS13-15htb_timer.dut' 0
+C 'frtl/timer.vl13n19tlinepagev_line/timeroelseS16htb_timer.dut' 21
+C 'frtl/timer.vl17n13tbranchpagev_branch/timeroifS17-19htb_timer.dut' 7
+C 'frtl/timer.vl17n14tbranchpagev_branch/timeroelseS20-22htb_timer.dut' 14
+C 'frtl/timer.vl9n5tlinepagev_line/timeroblockS9htb_timer.dut' 23
+C 'fverif/tb_verilog/tb_timer.vl20n5tlinepagev_line/tb_timeroblockS20htb_timer' 45
+C 'fverif/tb_verilog/tb_timer.vl22n5tlinepagev_line/tb_timeroblockS22htb_timer' 23
+C 'fverif/tb_verilog/tb_timer.vl23n10tbranchpagev_branch/tb_timeroelsehtb_timer' 2
+C 'fverif/tb_verilog/tb_timer.vl23n9tbranchpagev_branch/tb_timeroifS23htb_timer' 21
+C 'fverif/tb_verilog/tb_timer.vl24n13tbranchpagev_branch/tb_timeroifS24-26htb_timer' 0
+C 'fverif/tb_verilog/tb_timer.vl24n14tbranchpagev_branch/tb_timeroelsehtb_timer' 21
+C 'fverif/tb_verilog/tb_timer.vl28n13tbranchpagev_branch/tb_timeroifS28-30htb_timer' 0
+C 'fverif/tb_verilog/tb_timer.vl28n14tbranchpagev_branch/tb_timeroelsehtb_timer' 21
+C 'fverif/tb_verilog/tb_timer.vl3n15tlinepagev_line/tb_timeroblockS3htb_timer' 1
+C 'fverif/tb_verilog/tb_timer.vl35n5tlinepagev_line/tb_timeroblockS35-40,48-49htb_timer' 1
+C 'fverif/tb_verilog/tb_timer.vl37n9tlinepagev_line/tb_timeroblockS37htb_timer' 3
+C 'fverif/tb_verilog/tb_timer.vl4n17tlinepagev_line/tb_timeroblockS4htb_timer' 1
+C 'fverif/tb_verilog/tb_timer.vl40n9tlinepagev_line/tb_timeroblockS40-41htb_timer' 20
+C 'fverif/tb_verilog/tb_timer.vl42n13tbranchpagev_branch/tb_timeroifS42htb_timer' 7
+C 'fverif/tb_verilog/tb_timer.vl42n14tbranchpagev_branch/tb_timeroelsehtb_timer' 13
+C 'fverif/tb_verilog/tb_timer.vl44n10tbranchpagev_branch/tb_timeroelsehtb_timer' 1
+C 'fverif/tb_verilog/tb_timer.vl44n9tbranchpagev_branch/tb_timeroifS44-46htb_timer' 0
+C 'fverif/tb_verilog/tb_timer.vl5n18tlinepagev_line/tb_timeroblockS5htb_timer' 1
+C 'fverif/tb_verilog/tb_timer.vl6n31tlinepagev_line/tb_timeroblockS6htb_timer' 1

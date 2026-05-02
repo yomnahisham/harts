@@ -2,12 +2,14 @@
 // Replaces spi_slave_if + waiting_word2 in hw_scheduler_top.
 //
 // Registers (32-bit, PADDR[7:0], upper address bits must be 0):
-// 0x00 CMD_W1 (W): pulse cmd_valid, cmd_word=WDATA; if opcode in {4,6,7} set pending_word2
-// 0x04 CMD_W2 (W): pulse cmd_word2_valid, cmd_word2=WDATA, clear pending_word2
+// 0x00 CMD_W1 (W): cmd_word updated on the write beat; cmd_valid pulses next cycle
+// 0x04 CMD_W2 (W): cmd_word2 updated on the write beat; cmd_word2_valid next cycle
 // 0x08 RSP (R): rsp_word
 // 0x0C STATUS (R): {30'd0, pending_word2, ~irq_n}
 // 0x10 IRQ_REASON (R): {24'd0, irq_reason}
 // PSLVERR on decode miss. PREADY=1 (zero-wait-state)
+//
+// One-cycle gap between registering cmd_word and asserting cmd_valid avoids simulator / RTL ordering where control_unit saw stale cmd_word on cmd_valid
 
 module harts_apb_slave (
     input wire clk,
@@ -49,6 +51,8 @@ module harts_apb_slave (
     assign PSLVERR = access & ~addr_in_map;
 
     reg pending_word2;
+    reg arm_cmd_valid;
+    reg arm_word2_valid;
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
@@ -57,22 +61,30 @@ module harts_apb_slave (
             cmd_word2_valid <= 1'b0;
             cmd_word2 <= 32'd0;
             pending_word2 <= 1'b0;
+            arm_cmd_valid <= 1'b0;
+            arm_word2_valid <= 1'b0;
         end else begin
             cmd_valid <= 1'b0;
             cmd_word2_valid <= 1'b0;
-            if (write_phase) begin
+            if (arm_cmd_valid) begin
+                cmd_valid <= 1'b1;
+                arm_cmd_valid <= 1'b0;
+            end else if (arm_word2_valid) begin
+                cmd_word2_valid <= 1'b1;
+                pending_word2 <= 1'b0;
+                arm_word2_valid <= 1'b0;
+            end else if (write_phase) begin
                 case (addr_lo)
                     ADDR_CMD_W1: begin
-                        cmd_valid <= 1'b1;
                         cmd_word <= PWDATA;
                         if (PWDATA[31:28] == 4'h4 || PWDATA[31:28] == 4'h6 ||
                             PWDATA[31:28] == 4'h7)
                             pending_word2 <= 1'b1;
+                        arm_cmd_valid <= 1'b1;
                     end
                     ADDR_CMD_W2: begin
-                        cmd_word2_valid <= 1'b1;
                         cmd_word2 <= PWDATA;
-                        pending_word2 <= 1'b0;
+                        arm_word2_valid <= 1'b1;
                     end
                     default: ;
                 endcase

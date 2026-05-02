@@ -1,0 +1,4 @@
+# Cocotb + pytest (used from verif/.venv — see Makefile test-cocotb / test-pytest).
+cocotb>=1.9.0
+pytest>=7.0.0
+pytest-cov>=4.0.0

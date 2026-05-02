@@ -46,6 +46,14 @@ module tb_priority_queue;
             // dut.dbg_cell_valid and dut.dbg_cell_key are packed vectors:
             // valid bit i  -> dut.dbg_cell_valid[i]
             // key for slot i -> dut.dbg_cell_key[16*i +: 16]
+            if (dut.depth == 0) begin
+                for (i = 0; i < 16; i = i + 1) begin
+                    if (dut.dbg_cell_valid[i] !== 1'b0) begin
+                        $display("fail depth 0 but valid at %0d", i);
+                        $finish(1);
+                    end
+                end
+            end else begin
             for (i = 0; i < dut.depth - 1; i = i + 1) begin
                 if (dut.dbg_cell_valid[i] !== 1'b1 || dut.dbg_cell_valid[i+1] !== 1'b1) begin
                     $display("fail valid packing broken at %0d", i);
@@ -64,6 +72,7 @@ module tb_priority_queue;
                     $display("fail tail valid bit set at %0d", i);
                     $finish(1);
                 end
+            end
             end
         end
     endtask
@@ -114,6 +123,156 @@ module tb_priority_queue;
         end
         if (head_id !== 4'd4) begin
             $display("fail simultaneous enq/deq head expected 4 got %0d", head_id);
+            $finish(1);
+        end
+
+        // flush clears depth and cells; dequeue while empty is a no-op (deq_valid=0).
+        flush = 1;
+        @(posedge clk);
+        flush = 0;
+        @(posedge clk);
+        check_queue_invariant();
+        if (depth !== 0 || head_valid !== 1'b0) begin
+            $display("fail after flush depth=%0d head_valid=%0d", depth, head_valid);
+            $finish(1);
+        end
+        dequeue = 1;
+        @(posedge clk);
+        dequeue = 0;
+        @(posedge clk);
+        check_queue_invariant();
+
+        // --- pq_cell directed: enqueue-only "cell wins" (in_key not > cell_key) ---
+        do_enq(4'd1, 16'd100);
+        do_enq(4'd2, 16'd50);
+        check_queue_invariant();
+        if (head_id !== 4'd1 || head_key !== 16'd100 || depth !== 2) begin
+            $display("fail pq_cell enqueue cell-wins head=%0d key=%0d depth=%0d",
+                     head_id, head_key, depth);
+            $finish(1);
+        end
+
+        flush = 1;
+        @(posedge clk);
+        flush = 0;
+        @(posedge clk);
+
+        // pq_cell: deq+enq, in_beats_right false (incoming loses vs shifted right).
+        do_enq(4'd1, 16'd40);
+        do_enq(4'd2, 16'd30);
+        do_enq(4'd3, 16'd20);
+        enq_id = 4'd4;
+        enq_key = 16'd25;
+        enqueue = 1;
+        dequeue = 1;
+        @(posedge clk);
+        enqueue = 0;
+        dequeue = 0;
+        @(posedge clk);
+        check_queue_invariant();
+        if (head_id !== 4'd2 || head_key !== 16'd30 || depth !== 3) begin
+            $display("fail pq_cell deq+enq in_beats_right false head=%0d key=%0d depth=%0d",
+                     head_id, head_key, depth);
+            $finish(1);
+        end
+
+        flush = 1;
+        @(posedge clk);
+        flush = 0;
+        @(posedge clk);
+
+        // pq_cell: deq+enq, in_beats_right true (incoming beats shifted right).
+        do_enq(4'd1, 16'd40);
+        do_enq(4'd2, 16'd35);
+        enq_id = 4'd9;
+        enq_key = 16'd50;
+        enqueue = 1;
+        dequeue = 1;
+        @(posedge clk);
+        enqueue = 0;
+        dequeue = 0;
+        @(posedge clk);
+        check_queue_invariant();
+        if (head_id !== 4'd9 || head_key !== 16'd50 || depth !== 2) begin
+            $display("fail pq_cell deq+enq in_beats_right true head=%0d key=%0d depth=%0d",
+                     head_id, head_key, depth);
+            $finish(1);
+        end
+
+        flush = 1;
+        @(posedge clk);
+        flush = 0;
+        @(posedge clk);
+
+        // pq_cell: single occupied slot deq+enq (right_valid=0 -> in_beats_right true).
+        do_enq(4'd1, 16'd100);
+        enq_id = 4'd2;
+        enq_key = 16'd50;
+        enqueue = 1;
+        dequeue = 1;
+        @(posedge clk);
+        enqueue = 0;
+        dequeue = 0;
+        @(posedge clk);
+        check_queue_invariant();
+        if (head_id !== 4'd2 || head_key !== 16'd50 || depth !== 1) begin
+            $display("fail pq_cell single-slot deq+enq head=%0d key=%0d depth=%0d",
+                     head_id, head_key, depth);
+            $finish(1);
+        end
+
+        flush = 1;
+        @(posedge clk);
+        flush = 0;
+        @(posedge clk);
+
+        // pq_cell: equal keys -> in_beats_cell false (strict >); head stable, second enqueued.
+        do_enq(4'd1, 16'd50);
+        do_enq(4'd2, 16'd50);
+        check_queue_invariant();
+        if (head_id !== 4'd1 || depth !== 2) begin
+            $display("fail pq_cell equal-key enqueue head=%0d depth=%0d", head_id, depth);
+            $finish(1);
+        end
+
+        flush = 1;
+        @(posedge clk);
+        flush = 0;
+        @(posedge clk);
+
+        // fill to DEPTH=16 then enqueue while full (enq_valid=0): depth stays 16.
+        begin : fill_full
+            integer n;
+            for (n = 0; n < 16; n = n + 1) begin
+                do_enq(n[3:0], 16'd200 - n[15:0]);
+                check_queue_invariant();
+            end
+        end
+        if (depth !== 5'd16) begin
+            $display("fail full depth got %0d", depth);
+            $finish(1);
+        end
+        do_enq(4'd15, 16'd500);
+        @(posedge clk);
+        if (depth !== 5'd16) begin
+            $display("fail enqueue while full changed depth");
+            $finish(1);
+        end
+        check_queue_invariant();
+
+        // Drain with dequeue-only: depth_r case arm 2'b01 each cycle while depth>0.
+        begin : drain_full
+            integer n;
+            for (n = 0; n < 16; n = n + 1) begin
+                dequeue = 1;
+                @(posedge clk);
+                dequeue = 0;
+                @(posedge clk);
+                check_queue_invariant();
+            end
+        end
+        if (depth !== 0 || head_valid !== 1'b0) begin
+            $display("fail after drain depth=%0d head_valid=%0d", depth, head_valid);
             $finish(1);
         end
 

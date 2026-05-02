@@ -5,6 +5,12 @@ __pycache__/
 .pytest_cache/
 .coverage
 htmlcov/
+verif/.venv/
+verif/sim/cocotb_*/
+verif/sim/coverage_rtl/
+verif/sim/coverage_py_html/
+verif/tb/results.xml
+formal/timer_bmc/
 
 fw/esp32/build/
 fw/esp32/.pio/

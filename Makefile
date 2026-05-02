@@ -16,9 +16,19 @@ RTL_TOP_FILES := \
 	vendor/uart_apb_master/rtl/resp_builder.v \
 	vendor/uart_apb_master/rtl/apb_master.v
 
-.PHONY: test-verilog test-pq test-sq test-tt test-timer test-top test-top-final test-ctrl test-phase1 test-bridge test-cocotb test-vcd
+VENV ?= verif/.venv
+VENV_PY := $(VENV)/bin/python
 
-test-verilog: test-pq test-sq test-tt test-timer test-top test-top-final test-ctrl test-phase1 test-bridge
+.PHONY: test-all test-verilog test-pq test-sq test-tt test-timer test-top test-top-final \
+	test-top-policies test-ctrl test-phase1 test-bridge test-cocotb test-pytest test-formal test-vcd \
+	coverage coverage-rtl coverage-py
+
+test-all: test-verilog test-vcd test-cocotb test-pytest test-formal
+
+# Line coverage: Verilator (timer + priority_queue TBs) + pytest-cov (golden/sched).
+coverage: coverage-rtl coverage-py
+
+test-verilog: test-pq test-sq test-tt test-timer test-top test-top-final test-top-policies test-ctrl test-phase1 test-bridge
 
 test-pq:
 	$(IVERILOG) -g2012 -o verif/sim/pq verif/tb_verilog/tb_priority_queue.v rtl/priority_queue.v rtl/pq_cell.v
@@ -44,6 +54,10 @@ test-top-final:
 	$(IVERILOG) -g2012 -o verif/sim/top_final_tb verif/tb_verilog/tb_hw_scheduler_top_final.v $(RTL_TOP_FILES)
 	$(VVP) verif/sim/top_final_tb
 
+test-top-policies:
+	$(IVERILOG) -g2012 -o verif/sim/policies_tb verif/tb_verilog/tb_hw_scheduler_top_policies.v $(RTL_TOP_FILES)
+	$(VVP) verif/sim/policies_tb
+
 test-bridge:
 	$(IVERILOG) -g2012 -o verif/sim/bridge verif/tb_verilog/tb_uart_apb_bridge.v $(RTL_TOP_FILES)
 	$(VVP) verif/sim/bridge
@@ -61,13 +75,36 @@ test-phase1:
 	$(VVP) verif/sim/phase1_vcd
 
 test-cocotb:
-	@echo "run cocotb tests with your simulator and pytest plugin setup"
+	@test -d $(VENV) || python3 -m venv $(VENV)
+	@$(VENV_PY) -m pip install -q -r verif/requirements.txt
+	@$(VENV_PY) verif/cocotb/run_cocotb.py
+
+test-pytest:
+	@test -d $(VENV) || python3 -m venv $(VENV)
+	@$(VENV_PY) -m pip install -q -r verif/requirements.txt
+	@$(VENV_PY) -m pytest -q verif/tb/test_golden_model.py verif/tb/test_sched_modes.py verif/tb/test_rtl_regression.py
+
+test-formal:
+	@cd formal && sby -f timer_bmc.sby
+
+coverage-rtl:
+	@command -v verilator >/dev/null 2>&1 || { echo "coverage-rtl: install Verilator"; exit 1; }
+	@bash scripts/rtl_coverage.sh
+
+coverage-py:
+	@test -d $(VENV) || python3 -m venv $(VENV)
+	@$(VENV_PY) -m pip install -q -r verif/requirements.txt
+	@PYTHONPATH=verif/tb $(VENV_PY) -m pytest -q verif/tb/test_golden_model.py verif/tb/test_sched_modes.py \
+		--cov=golden_model --cov=test_sched_modes --cov-branch \
+		--cov-report=term-missing --cov-report=html:verif/sim/coverage_py_html
+	@echo "coverage-py: HTML -> verif/sim/coverage_py_html/index.html"
 
 test-vcd:
 	python3 scripts/vcd_sanity.py verif/sim/tb_priority_queue.vcd --mode pq
 	python3 scripts/vcd_sanity.py verif/sim/tb_sleep_queue.vcd --mode sq
 	python3 scripts/vcd_sanity.py verif/sim/tb_hw_scheduler_top.vcd --mode top
 	python3 scripts/vcd_sanity.py verif/sim/tb_hw_scheduler_top_final.vcd --mode top
+	python3 scripts/vcd_sanity.py verif/sim/tb_hw_scheduler_top_policies.vcd --mode top
 	python3 scripts/vcd_sanity.py verif/sim/tb_control_unit_assert.vcd --mode ctrl
 	python3 scripts/vcd_sanity.py verif/sim/tb_phase1_vcd.vcd --mode phase1
 	python3 scripts/vcd_sanity.py verif/sim/tb_uart_apb_bridge.vcd --mode top

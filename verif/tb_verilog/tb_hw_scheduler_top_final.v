@@ -236,7 +236,7 @@ module tb_hw_scheduler_top;
 
             // RESUME task 0 then 1 -> ready queue
             do_cmd_check("RESUME task0", 32'hB000_0000, 32'h0000_C00B);
-            do_cmd_check("RESUME task1", 32'hB010_0000, 32'h0000_C00B);
+            do_cmd_check("RESUME task1", 32'hB100_0000, 32'h0000_C00B);
 
             bridge_write32(ADDR_CMD_W1, 32'hD002_0000);
             bridge_read32(ADDR_RSP, rd);

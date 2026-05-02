@@ -45,6 +45,40 @@ module tb_timer;
             $display("fail not enough pulses");
             $finish(1);
         end
+
+        // !enable path: counter reloads to tick_divider each cycle, no pulses.
+        enable = 0;
+        repeat (4) @(posedge clk);
+        if (tick_counter !== tick_divider || tick_pulse !== 1'b0) begin
+            $display("fail enable off hold");
+            $finish(1);
+        end
+        enable = 1;
+        repeat (25) begin
+            @(posedge clk);
+            if (tick_pulse) pulses = pulses + 1;
+        end
+        if (pulses < 6) begin
+            $display("fail pulses after re-enable");
+            $finish(1);
+        end
+
+        // Asynchronous reset pulse (negedge rst_n) then resume counting.
+        enable = 0;
+        @(posedge clk);
+        rst_n = 0;
+        repeat (2) @(posedge clk);
+        if (tick_pulse !== 1'b0 || tick_counter !== 16'd0) begin
+            $display("fail timer in reset");
+            $finish(1);
+        end
+        rst_n = 1;
+        enable = 1;
+        repeat (12) begin
+            @(posedge clk);
+            if (tick_pulse) pulses = pulses + 1;
+        end
+
         $display("pass");
         $finish;
     end

@@ -1,6 +1,6 @@
 import cocotb
 from cocotb.clock import Clock
-from cocotb.triggers import RisingEdge
+from cocotb.triggers import NextTimeStep, ReadOnly, RisingEdge
 
 
 @cocotb.test()
@@ -30,8 +30,10 @@ async def test_sleep_wake_order(dut):
     for _ in range(5):
         dut.tick.value = 1
         await RisingEdge(dut.clk)
+        await ReadOnly()
         if int(dut.wake_valid.value):
             woke.append(int(dut.wake_id.value))
+        await NextTimeStep()
         dut.tick.value = 0
         await RisingEdge(dut.clk)
 

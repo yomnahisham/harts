@@ -1,0 +1,11 @@
+[options]
+mode bmc
+depth 40
+
+[engines]
+smtbmc z3
+
+[script]
+read_verilog -formal ../../../rtl/timer.v
+read_verilog -formal ../../timer_fv.v
+prep -top timer_fv -flatten
