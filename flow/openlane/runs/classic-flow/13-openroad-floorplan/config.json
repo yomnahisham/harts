@@ -9,7 +9,7 @@
     },
     "PRIMARY_GDSII_STREAMOUT_TOOL": "magic",
     "DEFAULT_MAX_TRAN": null,
-    "DEFAULT_CORNER": "nom_ss_100C_1v60",
+    "DEFAULT_CORNER": "nom_tt_025C_1v80",
     "STA_CORNERS": [
         "nom_tt_025C_1v80",
         "nom_ss_100C_1v60",
@@ -159,7 +159,7 @@
     "FP_TRACKS_INFO": "/Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tracks.info",
     "FP_SIZING": "relative",
     "FP_ASPECT_RATIO": 1,
-    "FP_CORE_UTIL": 35,
+    "FP_CORE_UTIL": 40,
     "FP_OBSTRUCTIONS": null,
     "PL_SOFT_OBSTRUCTIONS": null,
     "CORE_AREA": null,

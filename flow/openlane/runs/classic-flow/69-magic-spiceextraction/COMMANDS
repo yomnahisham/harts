@@ -1,0 +1,1 @@
+magic -dnull -noconsole -rcfile /Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.tech/magic/sky130A.magicrc /Users/yomna/librelane/librelane/scripts/magic/wrapper.tcl

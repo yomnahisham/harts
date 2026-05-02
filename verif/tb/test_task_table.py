@@ -2,10 +2,12 @@ import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge, Timer
 
+from sim_timing import CLK_PERIOD_NS
+
 
 @cocotb.test()
 async def test_write_read_task_entry(dut):
-    cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+    cocotb.start_soon(Clock(dut.clk, CLK_PERIOD_NS, unit="ns").start())
     dut.rst_n.value = 0
     dut.wr_en.value = 0
     dut.rd_en.value = 0
@@ -32,7 +34,7 @@ async def test_write_read_task_entry(dut):
 
     dut.rd_en.value = 1
     dut.rd_id.value = 3
-    await Timer(1, units="ns")
+    await Timer(1, unit="ns")
 
     assert int(dut.rd_priority.value) == 7
     assert int(dut.rd_period.value) == 100

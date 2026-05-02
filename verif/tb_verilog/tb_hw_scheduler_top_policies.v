@@ -2,8 +2,8 @@
 // UART+APB integration: scheduling policy ordering on the real priority_queue
 // (RM: shorter period at head; EDF: smaller relative deadline field at head).
 module tb_hw_scheduler_top_policies;
-    localparam real CLK_PERIOD = 62.5;
-    localparam DIVISOR = 3;
+    localparam real CLK_PERIOD = 25.0;
+    localparam integer DIVISOR = 22;
     localparam real BIT_PERIOD = DIVISOR * 16 * CLK_PERIOD;
 
     localparam [31:0] ADDR_CMD_W1 = 32'h0000_0000;

@@ -1,0 +1,3 @@
+openroad -exit -no_splash -metrics /Users/yomna/Documents/projects/harts/flow/openlane/runs/classic-flow/55-openroad-rcx/or_metrics_out.json /Users/yomna/librelane/librelane/scripts/openroad/rcx.tcl
+openroad -exit -no_splash -metrics /Users/yomna/Documents/projects/harts/flow/openlane/runs/classic-flow/55-openroad-rcx/or_metrics_out.json /Users/yomna/librelane/librelane/scripts/openroad/rcx.tcl
+openroad -exit -no_splash -metrics /Users/yomna/Documents/projects/harts/flow/openlane/runs/classic-flow/55-openroad-rcx/or_metrics_out.json /Users/yomna/librelane/librelane/scripts/openroad/rcx.tcl

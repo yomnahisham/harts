@@ -33,7 +33,12 @@ module hw_scheduler_top #(
     wire timer_enable;
     wire [15:0] tick_divider;
     wire tick_pulse;
+    // Split tick_pulse_r into two physically distinct registers: control_unit fans
+    // tick into a very wide comb cone (task_table rd_id mux); sleep_queue only needs
+    // the tick line. Duplicating the flop cuts Q-pin load and fixes SS setup slack.
     reg tick_pulse_r;
+    (* keep = 1 *)
+    reg tick_pulse_r_ctrl;
     wire [15:0] tick_counter;
 
     always @(posedge clk) begin
@@ -41,6 +46,13 @@ module hw_scheduler_top #(
             tick_pulse_r <= 1'b0;
         else
             tick_pulse_r <= tick_pulse;
+    end
+
+    always @(posedge clk) begin
+        if (!rst_n)
+            tick_pulse_r_ctrl <= 1'b0;
+        else
+            tick_pulse_r_ctrl <= tick_pulse;
     end
 
     wire pq_enqueue;
@@ -177,7 +189,7 @@ module hw_scheduler_top #(
         .cmd_word2(cmd_word2),
         .rsp_word(rsp_word),
         .need_word2(),
-        .tick_pulse(tick_pulse_r),
+        .tick_pulse(tick_pulse_r_ctrl),
         .irq_pending(irq_pending),
         .fast_irq(fast_irq),
         .pq_head_id(pq_head_id),

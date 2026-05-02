@@ -6,7 +6,7 @@
  power 1nW
  distance 1um
 == Resizer RC Values (After Set RC) ==
-=== Corner nom_ss_100C_1v60 ===
+=== Corner nom_tt_025C_1v80 ===
 ==== Estimation RC Values ====
 Name                Direction           Res/Unit Distance   Cap/Unit Distance   
 Signal              Avg                 4.402703e-04        8.148294e-05        

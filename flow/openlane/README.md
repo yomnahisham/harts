@@ -26,13 +26,15 @@ After GRT, **CheckAntennas** uses physical route intent so antenna ratios (metal
 
 ### Detailed routing (DRT)
 
-TritonRoute turns the GRT plan into legal met/via geometry. **`DRT_ASSIGN_NDR`** / **`NON_DEFAULT_RULES`** below apply to the clock net in addition to the workshop layer cap.
+TritonRoute turns the GRT plan into legal met/via geometry.
+
+**Clock NDR and this flow’s ECO substitution:** `meta.substituting_steps` runs **DetailedRouting**, then **InsertECOBuffers**, then **DetailedRouting** again. If `config.json` also sets **`NON_DEFAULT_RULES`** / **`DRT_ASSIGN_NDR`**, the first DRT pass creates a named rule (for example `clkndr`) in the ODB; the second pass tries `create_ndr` again and OpenROAD fails with **`[ODB-1005] NonDefaultRule … already exists`**. This project therefore relies on **`CTS_APPLY_NDR`** only for clock NDR (no duplicate named rules across two DRT steps).
 
 ---
 
 ## Clock non-default routing (NDR)
 
-This `config.json` defines a clock NDR rule `clkndr` and assigns it to the top-level clock net `clk` via `DRT_ASSIGN_NDR`.
+Clock nets get non-default spacing/width from **`CTS_APPLY_NDR`** during CTS (`clock_tree_synthesis … -apply_ndr …`), not from separate DRT-only rules in this config.
 
 ### `CTS_APPLY_NDR`: `half` vs `full`
 
@@ -74,10 +76,10 @@ LAYER met2
      WIDTH 3   0.28 ;
 ```
 
-The `clkndr` rule in `config.json` uses **0.28 µm** width and **0.28 µm** spacing on **met2**, i.e. **2×** the default **0.14 µm** width and minimum neighbor spacing for narrow wires. That yields roughly a **2× crosstalk guard band** on met2 at the expense of consuming about **twice as many routing tracks** on that layer. Wider rules on **met3** / **met4** in the same block follow the same idea for layers where the clock may be promoted.
+CTS **`apply_ndr`** targets roughly **2×**-style spacing on clock branches (see OpenROAD CTS docs for the exact mapping), i.e. a stronger crosstalk margin on **met2** at the cost of more routing tracks, with promotion to upper metals as the tree needs.
 
 ### Related keys in `config.json`
 
-- **`NON_DEFAULT_RULES`**: Named NDR (`clkndr`) — width/spacing per layer; `via: "None"` leaves vias at defaults unless you add a stack rule.
-- **`CTS_APPLY_NDR`**: How aggressively CTS applies that NDR (`half` here).
-- **`DRT_ASSIGN_NDR`**: Maps the logical clock net (`clk`) to the named rule for detailed routing so the tree stays consistent with CTS.
+- **`CTS_APPLY_NDR`**: How aggressively CTS applies NDR to the clock tree (`half` here: non-leaf / upper levels, not every leaf segment).
+
+If you drop the ECO substitution so only **one** DetailedRouting runs, you may add **`NON_DEFAULT_RULES`** and **`DRT_ASSIGN_NDR`** again for a custom named rule without hitting ODB-1005.

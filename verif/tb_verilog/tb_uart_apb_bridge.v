@@ -2,7 +2,7 @@
 // Focused test for the new front-end: vendored uart_apb_master bridge in
 // front of harts_apb_slave, instantiated through the full hw_scheduler_top.
 //
-// UART bit timing matches vendor/uart_apb_master/tb/uart_apb_master_tb.v (16 MHz, DIVISOR=3).
+// UART bit timing matches OpenLane 25 ns clk + hw_scheduler_top default UART_DIVISOR (~115200 baud).
 //
 // Coverage:
 //   - WRITE32(CMD_W1) / READ32(RSP) / STATUS / IRQ_REASON
@@ -10,8 +10,8 @@
 //   - unmapped APB -> PSLVERR -> bridge 0xEE
 //   - ext_irq → STATUS irq bit + IRQ_REASON
 module tb_uart_apb_bridge;
-    localparam real CLK_PERIOD = 62.5;
-    localparam DIVISOR = 3;
+    localparam real CLK_PERIOD = 25.0;
+    localparam integer DIVISOR = 22;
     localparam real BIT_PERIOD = DIVISOR * 16 * CLK_PERIOD;
 
     localparam [31:0] ADDR_CMD_W1 = 32'h0000_0000;

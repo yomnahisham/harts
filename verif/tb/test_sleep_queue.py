@@ -2,10 +2,12 @@ import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import NextTimeStep, ReadOnly, RisingEdge
 
+from sim_timing import CLK_PERIOD_NS
+
 
 @cocotb.test()
 async def test_sleep_wake_order(dut):
-    cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+    cocotb.start_soon(Clock(dut.clk, CLK_PERIOD_NS, unit="ns").start())
     dut.rst_n.value = 0
     dut.flush.value = 0
     dut.enqueue.value = 0

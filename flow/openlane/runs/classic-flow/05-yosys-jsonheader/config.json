@@ -9,7 +9,7 @@
     },
     "PRIMARY_GDSII_STREAMOUT_TOOL": "magic",
     "DEFAULT_MAX_TRAN": null,
-    "DEFAULT_CORNER": "nom_ss_100C_1v60",
+    "DEFAULT_CORNER": "nom_tt_025C_1v80",
     "STA_CORNERS": [
         "nom_tt_025C_1v80",
         "nom_ss_100C_1v60",
@@ -159,14 +159,21 @@
     "VERILOG_FILES": [
         "/Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v",
         "/Users/yomna/Documents/projects/harts/rtl/control_unit.v",
-        "/Users/yomna/Documents/projects/harts/rtl/spi_slave_if.v",
+        "/Users/yomna/Documents/projects/harts/rtl/harts_apb_slave.v",
         "/Users/yomna/Documents/projects/harts/rtl/priority_queue.v",
         "/Users/yomna/Documents/projects/harts/rtl/pq_cell.v",
         "/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v",
         "/Users/yomna/Documents/projects/harts/rtl/task_table.v",
         "/Users/yomna/Documents/projects/harts/rtl/timer.v",
         "/Users/yomna/Documents/projects/harts/rtl/interrupt_ctrl.v",
-        "/Users/yomna/Documents/projects/harts/rtl/scan_chain.v"
+        "/Users/yomna/Documents/projects/harts/rtl/scan_chain.v",
+        "/Users/yomna/Documents/projects/harts/vendor/uart_apb_master/rtl/uart_apb_master.v",
+        "/Users/yomna/Documents/projects/harts/vendor/uart_apb_master/rtl/baud_gen.v",
+        "/Users/yomna/Documents/projects/harts/vendor/uart_apb_master/rtl/uart_rx.v",
+        "/Users/yomna/Documents/projects/harts/vendor/uart_apb_master/rtl/uart_tx.v",
+        "/Users/yomna/Documents/projects/harts/vendor/uart_apb_master/rtl/cmd_parser.v",
+        "/Users/yomna/Documents/projects/harts/vendor/uart_apb_master/rtl/resp_builder.v",
+        "/Users/yomna/Documents/projects/harts/vendor/uart_apb_master/rtl/apb_master.v"
     ],
     "VERILOG_DEFINES": null,
     "VERILOG_POWER_DEFINE": "USE_POWER_PINS",

@@ -1,12 +1,12 @@
 set ::env(STEP_ID) OpenROAD.STAPrePNR
-set ::env(TECH_LEF) /Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef
+set ::env(TECH_LEF) /Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__max.tlef
 set ::env(MACRO_LEFS) ""
 set ::env(STD_CELL_LIBRARY) sky130_fd_sc_hd
 set ::env(VDD_PIN) VPWR
 set ::env(GND_PIN) VGND
 set ::env(TECH_LEFS) "\"nom_*\" /Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef \"min_*\" /Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__min.tlef \"max_*\" /Users/yomna/.ciel/ciel/sky130/versions/8afc8346a57fe1ab7934ba5a6056ea8b43078e71/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__max.tlef"
 set ::env(PRIMARY_GDSII_STREAMOUT_TOOL) magic
-set ::env(DEFAULT_CORNER) nom_ss_100C_1v60
+set ::env(DEFAULT_CORNER) max_ss_100C_1v60
 set ::env(STA_CORNERS) "nom_tt_025C_1v80 nom_ss_100C_1v60 nom_ff_n40C_1v95 min_tt_025C_1v80 min_ss_100C_1v60 min_ff_n40C_1v95 max_tt_025C_1v80 max_ss_100C_1v60 max_ff_n40C_1v95"
 set ::env(RT_MIN_LAYER) met1
 set ::env(RT_MAX_LAYER) met4

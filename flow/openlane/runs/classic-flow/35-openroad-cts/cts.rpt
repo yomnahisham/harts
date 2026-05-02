@@ -1,0 +1,21 @@
+Total number of Clock Roots: 1.
+Total number of Buffers Inserted: 381.
+Total number of Clock Subnets: 381.
+Total number of Sinks: 3086.
+Cells used:
+  sky130_fd_sc_hd__clkbuf_8: 348
+  sky130_fd_sc_hd__clkbuf_16: 33
+Dummys used:
+  sky130_fd_sc_hd__bufinv_16: 23
+  sky130_fd_sc_hd__clkbuf_4: 112
+  sky130_fd_sc_hd__clkbuf_8: 88
+  sky130_fd_sc_hd__clkinv_1: 2
+  sky130_fd_sc_hd__clkinv_2: 41
+  sky130_fd_sc_hd__clkinv_4: 5
+  sky130_fd_sc_hd__clkinv_8: 6
+  sky130_fd_sc_hd__clkinvlp_4: 5
+  sky130_fd_sc_hd__inv_4: 10
+  sky130_fd_sc_hd__inv_6: 12
+  sky130_fd_sc_hd__inv_8: 3
+  sky130_fd_sc_hd__inv_12: 2
+  sky130_fd_sc_hd__inv_16: 2

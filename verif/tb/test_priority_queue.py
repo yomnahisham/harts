@@ -2,6 +2,8 @@ import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge
 
+from sim_timing import CLK_PERIOD_NS
+
 
 async def reset_dut(dut):
     dut.rst_n.value = 0
@@ -19,7 +21,7 @@ async def reset_dut(dut):
 
 @cocotb.test()
 async def test_sorted_enqueue_dequeue(dut):
-    cocotb.start_soon(Clock(dut.clk, 10, units="ns").start())
+    cocotb.start_soon(Clock(dut.clk, CLK_PERIOD_NS, unit="ns").start())
     await reset_dut(dut)
 
     items = [(1, 10), (2, 30), (3, 20), (4, 5)]

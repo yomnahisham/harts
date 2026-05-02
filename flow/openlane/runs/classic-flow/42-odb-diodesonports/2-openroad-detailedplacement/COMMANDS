@@ -1,0 +1,1 @@
+openroad -exit -no_splash -metrics /Users/yomna/Documents/projects/harts/flow/openlane/runs/classic-flow/42-odb-diodesonports/2-openroad-detailedplacement/or_metrics_out.json /Users/yomna/librelane/librelane/scripts/openroad/dpl.tcl

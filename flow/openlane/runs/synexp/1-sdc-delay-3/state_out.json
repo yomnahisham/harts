@@ -1,8 +1,8 @@
 {
     "nl": "/Users/yomna/Documents/projects/harts/flow/openlane/runs/synexp/1-synthesis-delay-3/hw_scheduler_top.nl.v",
     "metrics": {
-        "design__instance__count": 16089,
-        "design__instance__area": 208706.416,
+        "design__instance__count": 16902,
+        "design__instance__area": 219575.5904,
         "design__instance_unmapped__count": 0,
         "synthesis__check_error__count": 0
     }

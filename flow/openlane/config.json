@@ -1,51 +1,43 @@
 {
   "DESIGN_NAME": "hw_scheduler_top",
   "PDN_MULTILAYER": false,
-  "PNR_SDC_FILE": "dir::sdc/hw_scheduler_top_pnr.sdc",
-  "SIGNOFF_SDC_FILE": "dir::sdc/hw_scheduler_top_signoff.sdc",
-  "VERILOG_FILES": [
-    "dir::../../rtl/hw_scheduler_top.v",
-    "dir::../../rtl/control_unit.v",
-    "dir::../../rtl/harts_apb_slave.v",
-    "dir::../../rtl/priority_queue.v",
-    "dir::../../rtl/pq_cell.v",
-    "dir::../../rtl/sleep_queue.v",
-    "dir::../../rtl/task_table.v",
-    "dir::../../rtl/timer.v",
-    "dir::../../rtl/interrupt_ctrl.v",
-    "dir::../../rtl/scan_chain.v",
-    "dir::../../vendor/uart_apb_master/rtl/uart_apb_master.v",
-    "dir::../../vendor/uart_apb_master/rtl/baud_gen.v",
-    "dir::../../vendor/uart_apb_master/rtl/uart_rx.v",
-    "dir::../../vendor/uart_apb_master/rtl/uart_tx.v",
-    "dir::../../vendor/uart_apb_master/rtl/cmd_parser.v",
-    "dir::../../vendor/uart_apb_master/rtl/resp_builder.v",
-    "dir::../../vendor/uart_apb_master/rtl/apb_master.v"
-  ],
   "CLOCK_PORT": "clk",
   "CLOCK_PERIOD": 25,
-  "SYNTH_STRATEGY": "AREA 3",
+  "VERILOG_FILES": [
+      "dir::../../rtl/hw_scheduler_top.v",
+      "dir::../../rtl/control_unit.v",
+      "dir::../../rtl/harts_apb_slave.v",
+      "dir::../../rtl/priority_queue.v",
+      "dir::../../rtl/pq_cell.v",
+      "dir::../../rtl/sleep_queue.v",
+      "dir::../../rtl/task_table.v",
+      "dir::../../rtl/timer.v",
+      "dir::../../rtl/interrupt_ctrl.v",
+      "dir::../../rtl/scan_chain.v",
+      "dir::../../vendor/uart_apb_master/rtl/uart_apb_master.v",
+      "dir::../../vendor/uart_apb_master/rtl/baud_gen.v",
+      "dir::../../vendor/uart_apb_master/rtl/uart_rx.v",
+      "dir::../../vendor/uart_apb_master/rtl/uart_tx.v",
+      "dir::../../vendor/uart_apb_master/rtl/cmd_parser.v",
+      "dir::../../vendor/uart_apb_master/rtl/resp_builder.v",
+      "dir::../../vendor/uart_apb_master/rtl/apb_master.v"
+  ],
+  "PNR_SDC_FILE": "dir::sdc/hw_scheduler_top_pnr.sdc",
+  "SIGNOFF_SDC_FILE": "dir::sdc/hw_scheduler_top_signoff.sdc",
+  "DEFAULT_CORNER": "max_ss_100C_1v60",
+  "IO_PIN_ORDER_CFG": "dir::pin_order.cfg",
+  "RUN_POST_GRT_DESIGN_REPAIR": true,
+  "FP_CORE_UTIL": 40,
   "RT_MAX_LAYER": "met4",
+  "SYNTH_STRATEGY": "AREA 3",
+  "DESIGN_REPAIR_MAX_SLEW_PCT": 30,
+  "DESIGN_REPAIR_MAX_CAP_PCT": 30,
+
   "GRT_ANTENNA_REPAIR_ITERS": 10,
   "GRT_ANTENNA_REPAIR_MARGIN": 15,
   "DIODE_ON_PORTS": "both",
-  "FP_CORE_UTIL": 35,
-  "PL_TARGET_DENSITY": 0.55,
-  "RUN_CTS": true,
-  "DEFAULT_CORNER": "nom_ss_100C_1v60",
-  "RUN_POST_GRT_DESIGN_REPAIR": true,
-  "IO_PIN_ORDER_CFG": "dir::pin_order.cfg",
-  "DESIGN_REPAIR_MAX_SLEW_PCT": 30,
-  "DESIGN_REPAIR_MAX_CAP_PCT": 30,
-  "NON_DEFAULT_RULES": {
-    "clkndr": {
-      "width": "met2 0.28 met3 0.6 met4 0.6",
-      "spacing": "met2 0.28 met3 0.6 met4 0.6",
-      "via": "None"
-    }
-  },
-  "CTS_APPLY_NDR": "half",
-  "DRT_ASSIGN_NDR": {
-    "clk": "clkndr"
+
+  "meta": {
+    "flow": "Classic"
   }
 }

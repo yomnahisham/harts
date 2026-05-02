@@ -3,6 +3,10 @@
 // only one wake fires per clock cycle, but if multiple entries expire in the
 // same tick the subsequent ones wake on consecutive cycles without waiting
 // for the next tick pulse (control_unit handles one sq_wake_valid per cycle)
+//
+// Single clocked process with blocking RAM updates: Yosys proc infers clean
+// registers (split always @(*) + always_ff caused "multiple conflicting drivers"
+// on cnt_mem in LibreLane YosysSynthChecks).
 module sleep_queue #(parameter DEPTH = 16, parameter ID_WIDTH = 4, parameter CNT_WIDTH = 32) (
     input wire clk,
     input wire rst_n,
@@ -76,7 +80,7 @@ module sleep_queue #(parameter DEPTH = 16, parameter ID_WIDTH = 4, parameter CNT
             end
 
             // step 3: sorted insert (ascending by count so head wakes soonest)
-            if (enqueue && depth_work < DEPTH[$clog2(DEPTH+1)-1:0]) begin
+            if (enqueue && depth_work < DEPTH) begin
                 pos = depth_work;
                 for (i = 0; i < DEPTH; i = i + 1) begin
                     if (i < depth_work && enq_count < cnt_mem[i] && pos == depth_work)

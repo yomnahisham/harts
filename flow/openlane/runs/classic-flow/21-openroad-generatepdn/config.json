@@ -9,7 +9,7 @@
     },
     "PRIMARY_GDSII_STREAMOUT_TOOL": "magic",
     "DEFAULT_MAX_TRAN": null,
-    "DEFAULT_CORNER": "nom_ss_100C_1v60",
+    "DEFAULT_CORNER": "nom_tt_025C_1v80",
     "STA_CORNERS": [
         "nom_tt_025C_1v80",
         "nom_ss_100C_1v60",
@@ -160,7 +160,7 @@
     "PDN_ENABLE_RAILS": true,
     "PDN_HORIZONTAL_HALO": 10,
     "PDN_VERTICAL_HALO": 10,
-    "PDN_MULTILAYER": true,
+    "PDN_MULTILAYER": false,
     "PDN_RAIL_OFFSET": 0,
     "PDN_VWIDTH": 1.6,
     "PDN_HWIDTH": 1.6,

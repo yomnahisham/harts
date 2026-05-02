@@ -55,9 +55,7 @@
 
 // lint_off -rule BLKSEQ -file "*/Users/yomna/Documents/projects/harts/rtl/sleep_queue.v" -match "Blocking assignment '=' in sequential logic process*"
 
-// lint_off -rule UNUSEDSIGNAL -file "*/Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v" -match "Signal is not driven, nor used: 'cmd_word2_valid'*"
-
-// lint_off -rule UNUSEDSIGNAL -file "*/Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v" -match "Signal is not driven, nor used: 'cmd_word2'*"
+// lint_off -rule UNUSEDSIGNAL -file "*/Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v" -match "Signal is not used: 'bridge_locked'*"
 
 // lint_off -rule UNUSEDSIGNAL -file "*/Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v" -match "Signal is not used: 'irq_index'*"
 
@@ -70,6 +68,8 @@
 // lint_off -rule UNUSEDSIGNAL -file "*/Users/yomna/Documents/projects/harts/rtl/priority_queue.v" -match "Signal is not used: 'dbg_cell_id'*"
 
 // lint_off -rule UNUSEDSIGNAL -file "*/Users/yomna/Documents/projects/harts/rtl/priority_queue.v" -match "Signal is not used: 'dbg_cell_key'*"
+
+// lint_off -rule CASEINCOMPLETE -file "*/Users/yomna/Documents/projects/harts/vendor/uart_apb_master/rtl/resp_builder.v" -match "Case values incompletely covered (example pattern 0x5)*"
 
 // lint_off -rule SYNCASYNCNET -file "*/Users/yomna/Documents/projects/harts/rtl/hw_scheduler_top.v" -match "Signal flopped as both synchronous and async: 'rst_n'*"
 

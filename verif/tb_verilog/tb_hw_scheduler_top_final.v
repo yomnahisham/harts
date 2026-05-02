@@ -6,9 +6,9 @@
 // register map (CMD_W1 / CMD_W2 / RSP / STATUS / IRQ_REASON), and the
 // expected control_unit response is read back via a UART READ32 of RSP.
 module tb_hw_scheduler_top;
-    // Match vendor/uart_apb_master/tb/uart_apb_master_tb.v (16 MHz, DIVISOR=3).
-    localparam real CLK_PERIOD = 62.5;
-    localparam DIVISOR = 3;
+    // Match OpenLane CLOCK_PERIOD (25 ns = 40 MHz) and hw_scheduler_top UART_DIVISOR default (~115200 baud).
+    localparam real CLK_PERIOD = 25.0;
+    localparam integer DIVISOR = 22;
     localparam real BIT_PERIOD = DIVISOR * 16 * CLK_PERIOD;
 
     localparam [31:0] ADDR_CMD_W1 = 32'h0000_0000;

@@ -4,9 +4,9 @@
 // translate them into APB transactions against harts_apb_slave, and checks
 // that the control_unit's response register reflects each command.
 module tb_hw_scheduler_top;
-    // Match vendor/uart_apb_master/tb/uart_apb_master_tb.v (16 MHz, DIVISOR=3).
-    localparam real CLK_PERIOD = 62.5;
-    localparam DIVISOR = 3;
+    // Match OpenLane CLOCK_PERIOD (25 ns = 40 MHz) and hw_scheduler_top UART_DIVISOR default (~115200 baud).
+    localparam real CLK_PERIOD = 25.0;
+    localparam integer DIVISOR = 22;
     localparam real BIT_PERIOD = DIVISOR * 16 * CLK_PERIOD;
 
     // APB offsets (must match rtl/harts_apb_slave.v)
